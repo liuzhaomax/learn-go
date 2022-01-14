@@ -8,6 +8,11 @@
  ***************************************************************************/
 package main
 
+import (
+	"fmt"
+	"time"
+)
+
 //func main() {
 //	c := make(chan string)
 //	go count1(5, "sheep", c)
@@ -15,11 +20,11 @@ package main
 //		fmt.Println(message)
 //	}
 //}
-//
-//func count1(n int, animal string, c chan string) {
-//	for i := 0; i < n; i++ {
-//		fmt.Println(i+1, animal)
-//		time.Sleep(time.Millisecond * 500)
-//	}
-//	close(c)
-//}
+
+func count1(n int, animal string, c chan string) {
+	for i := 0; i < n; i++ {
+		fmt.Println(i+1, animal)
+		time.Sleep(time.Millisecond * 500)
+	}
+	close(c)
+}
