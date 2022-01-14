@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "github.com/liuzhaomax/maxmicro/test/rpc/route";
+option go_package = "github.com/liuzhaomax/learn-go/rpc/route";
 
 package route;
 

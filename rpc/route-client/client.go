@@ -13,8 +13,8 @@ import (
 	"fmt"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+	pb "learn-go/rpc/route"
 	"log"
-	pb "maxmicro/test/rpc/route"
 )
 
 func runFirst(client pb.RouteGuideClient) {
