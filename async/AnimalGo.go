@@ -18,7 +18,7 @@ func AnimalGo() {
 	chDog := make(chan bool, 1)
 	chFish := make(chan bool, 1)
 
-	//chCat <- true
+	chCat <- true
 
 	for {
 		select {
