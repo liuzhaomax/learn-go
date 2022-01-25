@@ -34,13 +34,11 @@ func AnimalGo() {
 
 func WorkCat(ch chan bool, animal string) {
 	fmt.Println(animal)
-	time.Sleep(time.Second)
 	ch <- true
 }
 
 func WorkDog(ch chan bool, animal string) {
 	fmt.Println(animal)
-	time.Sleep(time.Second)
 	ch <- true
 }
 
