@@ -4,7 +4,7 @@
  * @date        2022/1/16 4:25
  * @version     v1.0
  * @filename    observer_test.go
- * @description
+ * @description 在主体里注册观察者，主体调用Notify，参数是某个事件，在Notify中将事件传入观察者并执行观察者的函数
  ***************************************************************************/
 package observer
 

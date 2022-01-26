@@ -4,7 +4,7 @@
  * @date        2022/1/19 19:56
  * @version     v1.0
  * @filename    strategy_test.go
- * @description
+ * @description if情况太多，可以改造
  ***************************************************************************/
 package strategy
 
