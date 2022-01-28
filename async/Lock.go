@@ -13,7 +13,8 @@ import (
 )
 
 var x int64
-var wg sync.WaitGroup
+
+//var wg sync.WaitGroup
 var lock sync.Mutex
 
 //func main() {

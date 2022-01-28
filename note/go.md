@@ -371,3 +371,63 @@ type StructField struct {
 ```
 
 ## 10. context包
+注意：
++ Context是线程安全的，可以放心的在多个goroutine中传递。
++ 以Context作为参数的函数方法，应该把Context作为第一个参数。
++ 给一个函数方法传递Context的时候，不要传递`nil`，如果不知道传递什么，就使用`context.TODO()` 
++ Context的`Value`相关方法应该传递请求域的必要数据，不应该用于传递可选参数。
+
+接口
+```go
+type Context interface {
+    Deadline() (deadline time.Time, ok bool)
+    Done() <-chan struct{}
+    Err() error
+    Value(key interface{}) interface{}
+}
+```
++ `Deadline`方法需要返回当前`Context`被取消的时间，也就是完成工作的截止时间（`deadline`）；
++ `Done`方法需要返回一个`Channel`，这个`Channel`会在当前工作完成或者上下文被取消之后关闭，多次调用`Done`方法会返回同一个`Channel`；
++ `Err`方法会返回当前`Context`结束的原因，它只会在`Done`返回的`Channel`被关闭时才会返回非空的值；
+  + 如果当前`Context`被取消就会返回`Canceled`错误；
+  + 如果当前`Context`超时就会返回`DeadlineExceeded`错误；
++ `Value`方法会从`Context`中返回键对应的值，对于同一个上下文来说，多次调用`Value`并传入相同的Key会返回相同的结果，该方法仅用于传递跨API和进程间跟请求域的数据。
+
+方法
++ Background：返回context根对象
++ TODO：给一个函数方法传递`Context`的时候，不要传递`nil`，如果不知道传递什么，就使用`context.TODO()`
++ WithCancel: `func WithCancel(parent Context) (ctx Context, cancel CancelFunc)`
++ WithDeadline: `func WithDeadline(parent Context, deadline time.Time) (Context, CancelFunc)`
++ WithTimeout: `func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc)`
++ WithValue: `func WithValue(parent Context, key, val interface{}) Context`
+
+WithDeadline 和 WithTimeout 的区别
++ `WithDeadline` 给`context`设置失效时间，如果`ctx`过期后`ctx.Done()`会先收到到期通知，返回`ctx.Err()`
++ `WithTimeout` 给`context`的`ctx.Done()`设置延迟时间，在延迟后自动执行`ctx.Done()`
+```go
+var wg sync.WaitGroup
+
+func worker(ctx context.Context) {
+LOOP:
+  for {
+    fmt.Println("worker")
+    time.Sleep(time.Second)
+    select {
+    case <-ctx.Done(): // 等待上级通知
+      break LOOP
+    default:
+    }
+  }
+  wg.Done()
+}
+
+func main() {
+  ctx, cancel := context.WithCancel(context.Background())
+  wg.Add(1)
+  go worker(ctx)
+  time.Sleep(time.Second * 3)
+  cancel() // 通知子goroutine结束
+  wg.Wait()
+  fmt.Println("over")
+}
+```
