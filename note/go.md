@@ -5,10 +5,12 @@
 4. 优雅的main
 5. 内存分配
 6. GC（未完成）
-8. GPM（未完成）
-9. runtime包
-10. reflect包
-11. context包
+7. GPM（未完成）
+8. runtime包
+9. reflect包
+10. context包
+11. atomic包
+12. 性能调优
 
 ## 1. array和slice
 |     | array | slice                   |
@@ -247,6 +249,10 @@ Go GC的写屏障（与内存写屏障是不同概念）是在写入指针前执
 **三色标记的实现**<br/>
 “gcmarkBits”`runtime.markBits`用来标记三色，白色对象为0，灰色或黑色为1。灰色黑色是看是否在扫描队列`runtime.scanobject`中，在队列中为灰色，黑色会出队。
 
+### GC流程
+![img.png](GC_process.png)
+STW（stop the world) 暂停协程保证安全。
+
 ## 7. GPM
 OS线程（操作系统线程）一般都有固定的栈内存（通常为**4MB**）,一个goroutine的栈在其生命周期开始时只有很小的栈（典型情况下**2KB**），goroutine的栈不是固定的，他可以按需增大和缩小，goroutine的栈大小限制可以达到1GB，虽然极少会用到这么大。所以在Go语言中一次创建十万左右的goroutine也是可以的。
 
@@ -431,3 +437,18 @@ func main() {
   fmt.Println("over")
 }
 ```
+
+## 11. atomic包
+线程安全
+
+| 方法	                                                                                                                                                                                                                                                                                                                                                                                          | 解释    |
+|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------|
+| func LoadInt32(addr *int32) (val int32) <br/> func LoadInt64(addr *int64) (val int64) <br/>func LoadUint32(addr *uint32) (val uint32) <br/> func LoadUint64(addr *uint64) (val uint64) <br/> func LoadUintptr(addr *uintptr) (val uintptr) <br/> func LoadPointer(addr *unsafe.Pointer) (val unsafe.Pointer)                                                                                 | 读取操作  |
+| func StoreInt32(addr *int32, val int32) <br/> func StoreInt64(addr *int64, val int64) <br/> func StoreUint32(addr *uint32, val uint32) <br/> func StoreUint64(addr *uint64, val uint64) <br/> func StoreUintptr(addr *uintptr, val uintptr) <br/> func StorePointer(addr *unsafe.Pointer, val unsafe.Pointer)                                                                                | 写入操作  |
+| func AddInt32(addr *int32, delta int32) (new int32) <br/> func AddInt64(addr *int64, delta int64) (new int64) <br/> func AddUint32(addr *uint32, delta uint32) (new uint32) <br/> func AddUint64(addr *uint64, delta uint64) (new uint64) <br/> func AddUintptr(addr *uintptr, delta uintptr) (new uintptr)                                                                                  | 修改操作 |
+| func SwapInt32(addr *int32, new int32) (old int32) <br/> func SwapInt64(addr *int64, new int64) (old int64) <br/> func SwapUint32(addr *uint32, new uint32) (old uint32) <br/> func SwapUint64(addr *uint64, new uint64) (old uint64) <br/> func SwapUintptr(addr *uintptr, new uintptr) (old uintptr) <br/> func SwapPointer(addr *unsafe.Pointer, new unsafe.Pointer) (old unsafe.Pointer) | 交换操作 |
+| func CompareAndSwapInt32(addr *int32, old, new int32) (swapped bool) <br/> func CompareAndSwapInt64(addr *int64, old, new int64) (swapped bool) <br/> func CompareAndSwapUint32(addr *uint32, old, new uint32) (swapped bool) <br/> func CompareAndSwapUint64(addr *uint64, old, new uint64) (swapped bool) <br/> func CompareAndSwapUintptr(addr *uintptr, old, new uintptr) (swapped bool) <br/> func CompareAndSwapPointer(addr *unsafe.Pointer, old, new unsafe.Pointer) (swapped bool) | 比较并交换操作 |
+
+## 12. 性能调优
+pprof， trace，race
+https://www.liwenzhou.com/posts/Go/performance_optimisation/
