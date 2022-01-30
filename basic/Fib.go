@@ -9,26 +9,20 @@
 package main
 
 import (
-	"strconv"
-	"strings"
+	"math"
 	"time"
 )
 
 func ModuloFibonacciSequence(requestChan chan bool, resultChan chan int) {
 	x, y := 1, 1
-	str := ""
-	var arr []string
-	res := 0
 	for {
 		<-requestChan
 		time.Sleep(time.Millisecond * 10)
 		x, y = y, x+y
-		str = strconv.Itoa(x)
-		for i := len(str) - 1; i >= len(str)-9; i-- {
-			arr = append([]string{string(str[i])}, arr...)
+		if x > int(math.Pow(10, 9)) {
+			x = x % int(math.Pow(10, 9))
 		}
-		res, _ = strconv.Atoi(strings.Join(arr, ""))
-		resultChan <- res
+		resultChan <- x
 	}
 }
 
