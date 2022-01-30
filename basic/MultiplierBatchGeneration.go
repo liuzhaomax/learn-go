@@ -1,34 +1,26 @@
 /****************************************************************************
  * @copyright   LIU Zhao
  * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/29 17:55
+ * @date        2022/1/30 14:31
  * @version     v1.0
- * @filename    Fib.go
+ * @filename    MultiplierBatchGeneration.go
  * @description
  ***************************************************************************/
 package main
 
 import (
-	"strconv"
-	"strings"
 	"time"
 )
 
-func ModuloFibonacciSequence(requestChan chan bool, resultChan chan int) {
-	x, y := 1, 1
-	str := ""
-	var arr []string
+func BurstyRateLimiter(requestChan chan bool, resultChan chan int, batchSize int, toAdd int) {
 	res := 0
 	for {
 		<-requestChan
 		time.Sleep(time.Millisecond * 10)
-		x, y = y, x+y
-		str = strconv.Itoa(x)
-		for i := len(str) - 1; i >= len(str)-9; i-- {
-			arr = append([]string{string(str[i])}, arr...)
+		for i := 0; i < batchSize; i++ {
+			resultChan <- res
+			res = res + toAdd
 		}
-		res, _ = strconv.Atoi(strings.Join(arr, ""))
-		resultChan <- res
 	}
 }
 
@@ -37,21 +29,35 @@ func ModuloFibonacciSequence(requestChan chan bool, resultChan chan int) {
 //
 //	skipTemp, err := strconv.ParseInt(strings.TrimSpace(readLine(reader)), 10, 64)
 //	checkError(err)
-//	skip := int32(skipTemp)
+//	skipBatches := int(skipTemp)
 //
 //	totalTemp, err := strconv.ParseInt(strings.TrimSpace(readLine(reader)), 10, 64)
 //	checkError(err)
-//	total := int32(totalTemp)
+//	printBatches := int(totalTemp)
+//
+//	batchSizeTemp, err := strconv.ParseInt(strings.TrimSpace(readLine(reader)), 10, 64)
+//	checkError(err)
+//	batchSize := int(batchSizeTemp)
+//
+//	toAddTemp, err := strconv.ParseInt(strings.TrimSpace(readLine(reader)), 10, 64)
+//	checkError(err)
+//	toAdd := int(toAddTemp)
 //
 //	resultChan := make(chan int)
 //	requestChan := make(chan bool)
-//	go ModuloFibonacciSequence(requestChan, resultChan)
-//	for i := int32(0); i < skip+total; i++ {
+//	go BurstyRateLimiter(requestChan, resultChan, batchSize, toAdd)
+//	for i := 0; i < skipBatches+printBatches; i++ {
 //		start := time.Now().UnixNano()
 //		requestChan <- true
-//		news := <-resultChan
-//		if i < skip {
-//			continue
+//		for j := 0; j < batchSize; j++ {
+//			news := <-resultChan
+//			if i < skipBatches {
+//				continue
+//			}
+//			fmt.Println(news)
+//		}
+//		if i >= skipBatches && i != skipBatches+printBatches-1 {
+//			fmt.Println("-----")
 //		}
 //		end := time.Now().UnixNano()
 //		timeDiff := (end - start) / 1000000
@@ -59,7 +65,6 @@ func ModuloFibonacciSequence(requestChan chan bool, resultChan chan int) {
 //			fmt.Println("Rate is too high")
 //			break
 //		}
-//		fmt.Println(news)
 //	}
 //}
 //

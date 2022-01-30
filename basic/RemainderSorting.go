@@ -9,7 +9,6 @@
 package main
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -44,11 +43,11 @@ func RemainderSorting(strArr []string) []string {
 	return res
 }
 
-func main() {
-	a := []string{
-		"AnBmMIPbs",
-		"ANBmMIPbs",
-		"Abb",
-	} //BUG
-	fmt.Println(RemainderSorting(a))
-}
+//func main() {
+//	a := []string{
+//		"AnBmMIPbs",
+//		"ANBmMIPbs",
+//		"Abb",
+//	} //BUG
+//	fmt.Println(RemainderSorting(a))
+//}
