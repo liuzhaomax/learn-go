@@ -8,12 +8,6 @@
  ***************************************************************************/
 package main
 
-import (
-	"bufio"
-	"io"
-	"strings"
-)
-
 type in []interface{}
 
 var serverChan = make(chan []interface{}, 1000)
@@ -95,17 +89,17 @@ func Server() {
 //	writer.Flush()
 //}
 
-func readLine(reader *bufio.Reader) string {
-	str, _, err := reader.ReadLine()
-	if err == io.EOF {
-		return ""
-	}
-
-	return strings.TrimRight(string(str), "\r\n")
-}
-
-func checkError(err error) {
-	if err != nil {
-		panic(err)
-	}
-}
+//func readLine(reader *bufio.Reader) string {
+//	str, _, err := reader.ReadLine()
+//	if err == io.EOF {
+//		return ""
+//	}
+//
+//	return strings.TrimRight(string(str), "\r\n")
+//}
+//
+//func checkError(err error) {
+//	if err != nil {
+//		panic(err)
+//	}
+//}
