@@ -24,7 +24,6 @@ type vote struct {
 }
 
 //List<String> findWinner(List<Vote> votes)
-
 func findWinner(votes []vote) []string {
 	m := make(map[string]int)
 
