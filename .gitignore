@@ -9,7 +9,6 @@ tmp
 
 *.sum
 *.exe
-*.txt
 *.log
 *.pem
 *.docx
