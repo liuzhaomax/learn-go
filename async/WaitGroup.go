@@ -8,6 +8,11 @@
  ***************************************************************************/
 package main
 
+import (
+	"fmt"
+	"time"
+)
+
 //func main() {
 //	var wg = sync.WaitGroup{}
 //	wg.Add(2)
@@ -16,15 +21,15 @@ package main
 //		wg.Done()
 //	}()
 //	go func() {
-//		go count(3, "dog")
+//		count(3, "dog")
 //		wg.Done()
 //	}()
 //	wg.Wait()
 //}
-//
-//func count(n int, animal string) {
-//	for i := 0; i < n; i++ {
-//		fmt.Println(i+1, animal)
-//		time.Sleep(time.Millisecond * 500)
-//	}
-//}
+
+func count(n int, animal string) {
+	for i := 0; i < n; i++ {
+		fmt.Println(i+1, animal)
+		time.Sleep(time.Millisecond * 500)
+	}
+}

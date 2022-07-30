@@ -17,9 +17,7 @@ import (
 
 // context.WithTimeout
 
-var wg sync.WaitGroup
-
-func worker(ctx context.Context) {
+func worker(ctx context.Context, wg *sync.WaitGroup) {
 LOOP:
 	for {
 		fmt.Println("db connecting ...")
@@ -34,13 +32,14 @@ LOOP:
 	wg.Done()
 }
 
-func main() {
-	// 设置一个50毫秒的超时
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
-	wg.Add(1)
-	go worker(ctx)
-	time.Sleep(time.Second * 6)
-	cancel() // 通知子goroutine结束
-	wg.Wait()
-	fmt.Println("over")
-}
+//func main() {
+//	var wg sync.WaitGroup
+//	// 设置一个50毫秒的超时
+//	ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
+//	wg.Add(1)
+//	go worker(ctx, &wg)
+//	time.Sleep(time.Second * 6)
+//	cancel() // 通知子goroutine结束
+//	wg.Wait()
+//	fmt.Println("over")
+//}

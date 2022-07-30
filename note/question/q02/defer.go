@@ -1,31 +1,21 @@
 /****************************************************************************
  * @copyright   LIU Zhao
  * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/7/24 14:41
+ * @date        2022/7/29 21:07
  * @version     v1.0
- * @filename    func_params.go
+ * @filename    defer.go
  * @description
  ***************************************************************************/
 package main
 
-type A struct {
-	field string
-}
-
-func exec(a A) {
-	a.field = "world"
-}
-
-func exec1(a *A) {
-	a.field = "world"
-}
-
 //func main() {
-//	a := A{
-//		field: "hello",
-//	}
-//	exec(a)
-//	fmt.Println(a.field)
-//	exec1(&a)
-//	fmt.Println(a.field)
+//	defer fmt.Println(1)
+//	defer fmt.Println(2)
+//	fmt.Println(3)
+//	defer fmt.Println(4)
+//	fmt.Println(5)
+//
+//	ch := make(chan string)
+//	close(ch)
+//	fmt.Println(<-ch == "")
 //}
