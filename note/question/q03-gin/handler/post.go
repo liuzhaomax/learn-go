@@ -10,7 +10,7 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
-	"learn-go/note/question/q03/schema"
+	"learn-go/note/question/q03-gin/schema"
 	"net/http"
 )
 

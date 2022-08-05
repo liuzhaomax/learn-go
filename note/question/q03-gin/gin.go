@@ -10,7 +10,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"learn-go/note/question/q03/handler"
+	"learn-go/note/question/q03-gin/handler"
 )
 
 func main() {
