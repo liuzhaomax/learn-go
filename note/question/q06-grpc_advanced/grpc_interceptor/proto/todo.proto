@@ -1,0 +1,29 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+option go_package="/pb";
+
+service ToDoService {
+  rpc DoWork(TodoRequest) returns (TodoResponse);
+}
+
+enum Week {
+  Sunday=0;
+  Monday=1;
+  Tuesday=2;
+  Wednesday=3;
+  Thursday=4;
+  Friday=5;
+  Saturday=6;
+}
+
+message TodoRequest {
+  string todo=1;
+  Week week=2;
+  map<string,string> bookMap=3;
+  google.protobuf.Timestamp doneTime=4;
+}
+
+message TodoResponse {
+  bool done=1;
+}
