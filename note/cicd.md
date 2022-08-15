@@ -34,9 +34,11 @@ sudo /etc/init.d/ssh restart
 tar -zxvf jdk-8u333-linux-aarch64.tar.gz -C /usr/local
 ```
 
-### 2.2 安装maven
+### 2.2 安装maven，node.js，golang
 ```shell
 tar -zxvf apache-maven-3.8.6-bin.tar.gz -C /usr/local
+tar -zxvf node-v16.16.0.tar.gz -C /usr/local
+tar -zxvf go1.17.5.linux-amd64.tar.gz -C /usr/local
 ```
 
 ### 2.3 改文件名
@@ -44,7 +46,9 @@ tar -zxvf apache-maven-3.8.6-bin.tar.gz -C /usr/local
 cd /usr/local
 mv jdk1.8.0_333 jdk
 mv apache-maven-3.8.6 maven
+mv node-v16.16.0 node
 ```
+go 不用改
 
 ### 2.4 修改settings.xml，配置maven私服，配置jdk编译插件
 ```shell
@@ -181,7 +185,7 @@ docker logs -f jenkins
 + Github Parameter
 + Publish Over SSH
 
-### 4.9 挂载jdk和maven
+### 4.9 挂载jdk，maven
 ```shell
 mv /usr/local/jdk /usr/local/docker/jenkins_docker/data
 mv /usr/local/maven /usr/local/docker/jenkins_docker/data
@@ -204,3 +208,4 @@ mv /usr/local/maven /usr/local/docker/jenkins_docker/data
 
 
 ## 5. CI流程
+IDEA push → github webhook → jenkins 拉取代码 → 运行构建前命令 比如打包 → 运行构建后命令 比如创建镜像与容器
