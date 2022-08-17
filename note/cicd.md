@@ -209,3 +209,7 @@ mv /usr/local/maven /usr/local/docker/jenkins_docker/data
 
 ## 5. CI流程
 IDEA push → github webhook → jenkins 拉取代码 → 运行构建前命令 比如打包 → 运行构建后命令 比如创建镜像与容器
+
+pipeline
+
+具体情况见项目
