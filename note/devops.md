@@ -5,6 +5,42 @@
 使用Github Webhooks触发自动化流程，Github App与Github Action同时做PR的代码检查。
 放弃K8s部署方案。
 
+<!-- TOC -->
+* [DevOps指南](#devops)
+  * [1. 准备工作](#1-)
+    * [1.1 VM配置要求](#11-vm)
+    * [1.2 必备工具 - jdk，node，go](#12----jdknodego)
+    * [1.3 必备工具 - docker，docker-compose](#13----dockerdocker-compose)
+    * [1.4 必备工具 - Jenkins](#14----jenkins)
+  * [2. 配置Jenkins](#2-jenkins)
+    * [2.1 初始化Jenkins](#21-jenkins)
+    * [2.2 安装重要插件](#22-)
+    * [2.3 挂载jdk](#23-jdk)
+    * [2.4 挂载nodejs](#24-nodejs)
+    * [2.5 连接代码仓库](#25-)
+  * [3. 流水线Pipeline](#3-pipeline)
+    * [3.1 创建流水线](#31-)
+    * [3.2 拉取代码](#32-)
+    * [3.3 静态代码分析](#33-)
+    * [3.5 安全漏洞扫描](#35-)
+    * [3.6 构建镜像](#36-)
+  * [4. 问题](#4-)
+    * [4.1 代理原因卡死，不报错](#41-)
+    * [4.2 内存原因卡死，查看monitor，未卡死时渐满，卡死时monitor调不出](#42-monitormonitor)
+    * [4.3 连接SSH server，test connection不过](#43-ssh-servertest-connection)
+    * [4.4 Harbor报错HTTPS](#44-harborhttps)
+    * [4.5 部署脚本运行不成功](#45-)
+    * [4.6 创建容器的脚本执行报错127](#46-127)
+    * [4.7 在CI的多分支流水线中，无法发现最新版本](#47-ci)
+    * [4.8 sonar报错key不合法](#48-sonarkey)
+  * [5. PR触发CI](#5-prci)
+    * [5.1 安装插件](#51-)
+    * [5.2 配置JOB](#52-job)
+    * [5.3 配置webhook](#53-webhook)
+    * [5.4 配置action](#54-action)
+    * [5.5 配置branch规则](#55-branch)
+<!-- TOC -->
+
 ## 1. 准备工作
 
 ### 1.1 VM配置要求
