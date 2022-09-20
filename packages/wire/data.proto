@@ -1,0 +1,16 @@
+syntax="proto3";
+
+option go_package="/pb";
+
+service DataService {
+    rpc GetDataById(IdRequest) returns (DataRes);
+}
+
+message IdRequest {
+    uint32 id=1;
+}
+
+message DataRes {
+    int32 id=1;
+    string mobile=2;
+}
