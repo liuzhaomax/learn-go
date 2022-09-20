@@ -1,12 +1,25 @@
 # learn-go
 
-https://github.com/protocolbuffers/protobuf/releases 下载win32那个，解压后把bin目录添加到path系统变量
-cmd执行命令
+protobuf
+```shell
+# protoc-gen-go
+go get -u github.com/golang/protobuf/protoc-gen-go
+# grpc
+go get -u google.golang.org/grpc
+# protobuf
+go get -u google.golang.org/protobuf
+```
 
-`go get github.com/golang/protobuf/proto`
+```shell
+protoc -I . --go_out=plugins=grpc:. *.proto
+```
 
-`go get google.golang.org/protobuf/cmd/protoc-gen-go`
-
-`go get google.golang.org/grpc/cmd/protoc-gen-go-grpc`
-
-`go get google.golang.org/grpc`
+wire
+```shell
+# 安装
+go install github.com/google/wire/cmd/wire@latest
+go get github.com/google/wire/cmd/wire
+# 生成
+cd internal/app
+go run github.com/google/wire/cmd/wire
+```
