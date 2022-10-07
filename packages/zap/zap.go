@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/8/13 11:47
- * @version     v1.0
- * @filename    zap.go
- * @description 日志，uber
- ***************************************************************************/
 package main
 
 import (

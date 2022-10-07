@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/7/30 18:42
- * @version     v1.0
- * @filename    Context.go
- * @description
- ***************************************************************************/
 package main
 
 import (

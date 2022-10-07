@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/31 15:14
- * @version     v1.0
- * @filename    SyncHash.go
- * @description
- ***************************************************************************/
 package main
 
 import (

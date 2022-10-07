@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/15 5:07
- * @version     v1.0
- * @filename    QuickSort.go
- * @description
- ***************************************************************************/
 package algorithm
 
 import (

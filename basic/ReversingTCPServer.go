@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/30 18:19
- * @version     v1.0
- * @filename    ReversingTCPServer.go
- * @description
- ***************************************************************************/
 package main
 
 import (

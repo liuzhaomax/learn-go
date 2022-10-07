@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/2/23 12:36
- * @version     v1.0
- * @filename    sortMap.go
- * @description
- ***************************************************************************/
 package main
 
 /**
@@ -16,14 +8,14 @@ package main
 // 1  2
 // 2  1
 
-//"A", "b", "c"
+// "A", "b", "c"
 type vote struct {
 	A string
 	B string
 	C string
 }
 
-//List<String> findWinner(List<Vote> votes)
+// List<String> findWinner(List<Vote> votes)
 func findWinner(votes []vote) []string {
 	m := make(map[string]int)
 

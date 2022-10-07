@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/30 14:31
- * @version     v1.0
- * @filename    MultiplierBatchGeneration.go
- * @description
- ***************************************************************************/
 package main
 
 import (

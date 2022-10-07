@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/8 2:45
- * @version     v1.0
- * @filename    Search.go
- * @description
- ***************************************************************************/
 package main
 
 import (

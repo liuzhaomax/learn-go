@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/19 19:46
- * @version     v1.0
- * @filename    strategy.go
- * @description
- ***************************************************************************/
 package strategy
 
 import "fmt"

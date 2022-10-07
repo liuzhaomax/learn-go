@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/29 15:39
- * @version     v1.0
- * @filename    ModifyString.go
- * @description
- ***************************************************************************/
 package main
 
 import (

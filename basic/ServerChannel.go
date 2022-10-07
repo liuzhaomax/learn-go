@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/30 23:19
- * @version     v1.0
- * @filename    ServerChannel.go
- * @description
- ***************************************************************************/
 package main
 
 type in []interface{}

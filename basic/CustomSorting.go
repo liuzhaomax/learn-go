@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/30 22:38
- * @version     v1.0
- * @filename    CustomSorting.go
- * @description
- ***************************************************************************/
 package main
 
 func customSorting(strArr []string) []string {

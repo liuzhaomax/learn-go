@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/28 19:05
- * @version     v1.0
- * @filename    WithTimeout.go
- * @description
- ***************************************************************************/
 package main
 
 import (

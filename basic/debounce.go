@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/2/22 11:47
- * @version     v1.0
- * @filename    debounce.go
- * @description
- ***************************************************************************/
 package main
 
 //100  10s

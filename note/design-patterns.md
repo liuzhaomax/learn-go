@@ -1,4 +1,4 @@
-# Design Pattern
+# Design Patterns
 
 >鸣谢大佬 欢喜（B站：面向加薪学习）
 

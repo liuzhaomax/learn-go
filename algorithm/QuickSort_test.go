@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/15 6:54
- * @version     v1.0
- * @filename    QuickSort_test.go
- * @description
- ***************************************************************************/
 package algorithm
 
 import (
@@ -35,7 +27,7 @@ func TestQuickSort(t *testing.T) {
 	}
 }
 
-//go test -bench=QuickSort -benchmem
+// go test -bench=QuickSort -benchmem
 func BenchmarkQuickSort(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		QuickSort([]int{5, 4, 3, 2, 1})

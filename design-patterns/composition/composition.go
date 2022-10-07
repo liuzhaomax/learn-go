@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/26 23:12
- * @version     v1.0
- * @filename    composition.go
- * @description
- ***************************************************************************/
 package composition
 
 import "fmt"

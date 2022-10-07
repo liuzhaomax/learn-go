@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/6 20:44
- * @version     v1.0
- * @filename    WaitGroup.go
- * @description
- ***************************************************************************/
 package main
 
 import (

@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/1/31 14:27
- * @version     v1.0
- * @filename    Anagram.go
- * @description
- ***************************************************************************/
 package main
 
 import (

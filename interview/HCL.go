@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/5/11 16:34
- * @version     v1.0
- * @filename    HCL.go
- * @description
- ***************************************************************************/
 package main
 
 import (
@@ -19,7 +11,7 @@ func main() {
 	fmt.Println(timeMinutes("101:01:20"))
 }
 
-//timeMinutes converts a time string in format "hh:mm:ss" to minutes. //assume all data validation has passed for the input "timeStr".
+// timeMinutes converts a time string in format "hh:mm:ss" to minutes. //assume all data validation has passed for the input "timeStr".
 func timeMinutes(timeStr string) float64 {
 	arr := make([]string, 0, 0)
 	arr = strings.Split(timeStr, ":")
