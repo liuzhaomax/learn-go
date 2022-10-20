@@ -1,6 +1,6 @@
 # Design Patterns
 
->鸣谢 欢喜（B站：面向加薪学习）
+> 鸣谢 欢喜（B站：面向加薪学习）
 
 <!-- TOC -->
 * [Design Patterns](#design-patterns)
