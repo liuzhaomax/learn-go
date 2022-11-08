@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/7/24 14:41
- * @version     v1.0
- * @filename    func_params.go
- * @description
- ***************************************************************************/
 package main
 
 type A struct {

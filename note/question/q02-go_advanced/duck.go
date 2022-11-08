@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/7/23 21:49
- * @version     v1.0
- * @filename    duck.go
- * @description
- ***************************************************************************/
 package main
 
 import "fmt"

@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/7/29 21:07
- * @version     v1.0
- * @filename    defer.go
- * @description
- ***************************************************************************/
 package main
 
 //func main() {
