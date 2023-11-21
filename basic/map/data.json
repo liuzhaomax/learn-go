@@ -1,0 +1,16 @@
+{
+    "nudges": [
+        {
+            "tip_key": "123",
+            "data": "{\"source\":\"value\"}"
+        },
+        {
+            "tip_key": "456",
+            "data": "{\"source\":\"value\"}"
+        },
+        {
+            "tip_key": "789",
+            "data": "{\"source\":\"value\"}"
+        }
+    ]
+}
