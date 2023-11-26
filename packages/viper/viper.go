@@ -3,11 +3,13 @@ package main
 import (
 	"fmt"
 	"github.com/spf13/viper"
+	"reflect"
 )
 
 type DBConfig struct {
 	Username string `mapstructure:"username"`
 	Password string `mapstructure:"password"`
+	NilTest  string `mapstructure:"nil_test"`
 }
 
 type RedisConfig struct {
@@ -44,6 +46,8 @@ func main() {
 	}
 	fmt.Println(dbConfig.Username)
 	fmt.Println(dbConfig.Password)
+	fmt.Println(dbConfig.NilTest)
+	fmt.Println(reflect.TypeOf(dbConfig.NilTest))
 
 	// 读取环境变量 Mac和linux可以使用 export ENV=dev 直接设置环境变量，Windows要配环境变量并重启IDEA
 	env := GetEnv("ENV")
@@ -55,6 +59,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println(fmt.Sprintf("env is %s", env))
 	fmt.Println(serverConfig.ServerName)
 	fmt.Println(serverConfig.RedisConfig.Host)
 	fmt.Println(serverConfig.RedisConfig.Port)

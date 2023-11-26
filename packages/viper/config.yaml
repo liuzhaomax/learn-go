@@ -1,3 +1,4 @@
-name: "learn-go"
-username: "hello"
-password: "123"
+name: learn-go
+username: hello
+password: 123
+nil_test: 123
