@@ -6,18 +6,18 @@ import (
 	"time"
 )
 
-//func main() {
-//	var lock sync.RWMutex
-//	var wg sync.WaitGroup
-//	var str = "hello"
-//	wg.Add(4)
-//	go readStr(&str, &wg, &lock, 0)
-//	go readStr(&str, &wg, &lock, 0)
-//	go readStr(&str, &wg, &lock, 1)
-//	go updateStr(&str, &wg, &lock)
-//	wg.Wait()
-//	fmt.Println("over")
-//}
+func main() {
+	var lock sync.RWMutex
+	var wg sync.WaitGroup
+	var str = "hello"
+	wg.Add(4)
+	go readStr(&str, &wg, &lock, 0)
+	go readStr(&str, &wg, &lock, 0)
+	go readStr(&str, &wg, &lock, 1)
+	go updateStr(&str, &wg, &lock)
+	wg.Wait()
+	fmt.Println("over")
+}
 
 func updateStr(str *string, wg *sync.WaitGroup, lock *sync.RWMutex) {
 	lock.Lock()

@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
+	"time"
 )
 
 var query = "test"
@@ -13,14 +15,14 @@ var searchRequest = make(chan string)
 var workerDone = make(chan bool)
 var foundMatch = make(chan bool)
 
-//func main() {
-//	start := time.Now()
-//	workerCount = 1
-//	go search("D:/workspace/", true)
-//	waitForWorkers()
-//	fmt.Println(matches, "matches")
-//	fmt.Println(time.Since(start))
-//}
+func main() {
+	start := time.Now()
+	workerCount = 1
+	go search("D:/workspace/", true)
+	waitForWorkers()
+	fmt.Println(matches, "matches")
+	fmt.Println(time.Since(start))
+}
 
 func waitForWorkers() {
 	for {
