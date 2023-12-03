@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/8/4 20:55
- * @version     v1.0
- * @filename    server
- * @description
- ***************************************************************************/
 package main
 
 import (

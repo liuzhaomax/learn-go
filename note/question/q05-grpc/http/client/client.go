@@ -1,11 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2022/8/4 20:56
- * @version     v1.0
- * @filename    client.go
- * @description
- ***************************************************************************/
 package main
 
 import (
