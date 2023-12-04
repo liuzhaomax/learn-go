@@ -199,7 +199,7 @@ mv /home/opc/tools/jdk /home/opc/docker/jenkins_docker/data
 ```
 回到浏览器jenkins的`Dashboard` → `Global Tool Configuration` → `JDK` → `Add JDK`，取消自动安装，按下图填写。
 
-![挂载jdk.png](devops/挂载jdk.png)
+![挂载jdk.png](img/devops/挂载jdk.png)
 
 ### 2.4 挂载nodejs
 ```shell
@@ -207,12 +207,12 @@ cp -r /home/opc/tools/node /home/opc/docker/jenkins_docker/data
 ```
 回到浏览器jenkins的`Dashboard` → `Global Tool Configuration` → `NodeJS` → `NodeJS`，取消自动安装，按下图填写。
 
-![挂载nodejs.png](devops/挂载nodejs.png)
+![挂载nodejs.png](img/devops/挂载nodejs.png)
 
 ### 2.5 连接代码仓库
 `Dashboard` → `Configure System`，找到`Publish over SSH`，点击`Add`
 
-![连接代码仓库.png](devops/连接代码仓库.png)
+![连接代码仓库.png](img/devops/连接代码仓库.png)
 
 这个username是远程服务器的username，密码和私钥也是连接那个服务器用的。
 
@@ -224,7 +224,7 @@ cp -r /home/opc/tools/node /home/opc/docker/jenkins_docker/data
 ### 3.1 创建流水线
 `New Item` → 输入名称 → `Pipeline` → OK
 
-![流水线脚本.png](devops/流水线脚本.png)
+![流水线脚本.png](img/devops/流水线脚本.png)
 
 `Pipeline Syntax`可进入生成指定功能脚本的页面，比如checkout功能的脚本
 
@@ -232,8 +232,8 @@ cp -r /home/opc/tools/node /home/opc/docker/jenkins_docker/data
 
 回到Pipeline配置区域 → 选择`Pipeline script from SCM` → 选择`Git`
 
-![配置流水线拉取分支.png](devops/配置流水线拉取分支.png)
-![配置流水线脚本地址.png](devops/配置流水线脚本地址.png)
+![配置流水线拉取分支.png](img/devops/配置流水线拉取分支.png)
+![配置流水线脚本地址.png](img/devops/配置流水线脚本地址.png)
 
 > 注意：Script Path第一个字符不要"/"
 > 注意：按上图中填写Branch Specifier，才会按照tag构建，如果填写的是*/main，即便选择按tag构建，也只会拉取main分支的代码进行构建。
@@ -243,8 +243,8 @@ cp -r /home/opc/tools/node /home/opc/docker/jenkins_docker/data
 ### 3.2 拉取代码
 来到项目的Configure，按图中点击
 
-![参数化构建.png](devops/参数化构建.png)
-![配置代码仓库信息.png](devops/配置代码仓库信息.png)
+![参数化构建.png](img/devops/参数化构建.png)
+![配置代码仓库信息.png](img/devops/配置代码仓库信息.png)
 
 转到`Pipeline Syntax`生成语法
 
@@ -342,9 +342,9 @@ vi sonar-scanner.properties
 
 给sonar-scanner设置token，来到浏览器sonar面板右上角
 
-![sonar-scanner设置token.png](devops/sonar-scanner设置token.png)
+![sonar-scanner设置token.png](img/devops/sonar-scanner设置token.png)
 
-![sonar-scanner生成token.png](devops/sonar-scanner生成token.png)
+![sonar-scanner生成token.png](img/devops/sonar-scanner生成token.png)
 
 ```shell
 # 使用扫描命令
@@ -364,7 +364,7 @@ vi sonar-scanner.properties
 
 成功会看到
 
-![sonar-scanner成功.png](devops/sonar-scanner成功.png)
+![sonar-scanner成功.png](img/devops/sonar-scanner成功.png)
 
 <h3>SonarQube加入流水线</h3>
 
@@ -372,13 +372,13 @@ jenkins安装SonarQube Scanner插件
 
 `Dashboard` → `Configure System`，找到`SonarQube servers`，点击`Add`，注意添加token
 
-![img.png](devops/配置sonarqube-server.png)
+![img.png](img/devops/配置sonarqube-server.png)
 
-![增加sonar的token.png](devops/增加sonar的token.png)
+![增加sonar的token.png](img/devops/增加sonar的token.png)
 
 `Dashboard` → `Global Tool Configuration`，找到`SonarQube Scanner`，点击`Add`
 
-![添加sonar-scanner全局工具.png](devops/添加sonar-scanner全局工具.png)
+![添加sonar-scanner全局工具.png](img/devops/添加sonar-scanner全局工具.png)
 
 修改流水线对应位置命令，注意命令bin是在容器内部的地址
 ```shell
@@ -394,7 +394,7 @@ jenkins安装SonarQube Scanner插件
 ```
 
 <h3>设置代码质量标准</h3>
-![代码质量标准.png](devops/代码质量标准.png)
+![代码质量标准.png](img/devops/代码质量标准.png)
 
 ### 3.5 安全漏洞扫描
 checkmarx, Tenable.io CS, Harness
@@ -409,7 +409,7 @@ cd /home/opc/tools/harbor
 cp harbor.yml.tmpl harbor.yml
 vi harbor.yml
 ```
-![配置harbor.png](devops/配置harbor.png)
+![配置harbor.png](img/devops/配置harbor.png)
 
 初始帐号密码是：admin Harbor12345
 ```shell
@@ -420,7 +420,7 @@ sudo ./install.sh
 
 创建一个新项目
 
-![Harbor新项目.png](devops/Harbor新项目.png)
+![Harbor新项目.png](img/devops/Harbor新项目.png)
 
 在Jenkinsfile定义变量
 ```
@@ -464,7 +464,7 @@ failed用error收尾
 
 `Dashboard` → `Configure System`，找到`Global Build Discarders`，点击`Add`
 
-![配置保留任务.png](devops/配置保留任务.png)
+![配置保留任务.png](img/devops/配置保留任务.png)
 
 ## 4. 问题
 
@@ -518,7 +518,7 @@ Exec exit status not zero. Status [127]
 ### 4.7 在CI的多分支流水线中，无法发现最新版本
 添加`Discover tags`
 
-![ci发现标签.png](devops/ci发现标签.png)
+![ci发现标签.png](img/devops/ci发现标签.png)
 
 ### 4.8 sonar报错key不合法
 `ERROR: Malformed key for Project: 'xxx/main'. Allowed characters are alphanumeric, '-', '_', '.' and ':', with at least one non-digit.`
@@ -536,12 +536,12 @@ Exec exit status not zero. Status [127]
 ### 5.2 配置JOB
 `Dashboard` → `Configure System`，找到`GitHub Pull Request Builder`
 
-![配置githubPR插件.png](devops/配置githubPR插件.png)
+![配置githubPR插件.png](img/devops/配置githubPR插件.png)
 
 ### 5.3 配置webhook
 github setting里，github pr builder插件的access token要加上hook相关的权限。
 
-![webhook配置1.png](devops/webhook配置1.png)
+![webhook配置1.png](img/devops/webhook配置1.png)
 
 secret在jenkins的user config里面生成API token
 
@@ -549,7 +549,7 @@ secret在jenkins的user config里面生成API token
 
 成功后显示`√`，见下图
 
-![webhook配置2.png](devops/webhook配置2.png)
+![webhook配置2.png](img/devops/webhook配置2.png)
 
 ### 5.4 配置action
 在项目中添加`.github/workflow/xxx.yaml`文件
@@ -576,6 +576,6 @@ secret在jenkins的user config里面生成API token
 
 成功后会在PR界面显示
 
-![githubChecks.png](devops/githubChecks.png)
+![githubChecks.png](img/devops/githubChecks.png)
 
 至此，全套DevOps流程结束。

@@ -135,28 +135,28 @@ golang程序变量会携带有一组校验数据，用来证明它的整个生�
 
 >Go的内存管理是借鉴 tcmalloc（thread-caching-malloc) 实现的
 
-![img.png](go/malloc.png)
-![img.png](go/malloc_expansion.png)
+![img.png](img/go/malloc.png)
+![img.png](img/go/malloc_expansion.png)
 
 **Go的内存结构**<br/>
 Go在程序启动的时候，会分配一块连续的内存(虚拟内存)。
-![img.png](go/v_memory_structure.png)
+![img.png](img/go/v_memory_structure.png)
 `spans`和`bitmap`的大小会随着`arena`(heap)的改变而改变。
 + `arena`就是常说的heap。由连续的页`page`组成（管理角度）（平常说的存储多个对象，是使用角度）。
 + `spans`是管理分配`arena`(heap)的区域。此区域存放了`mspan`的指针。`spans`区域用于表示`arena`区中的某一页(`page`)属于哪个`mspan`。
 + `bitmap`主要的作用还是服务于GC。有好几种:`Stack`, `data`, and `bss bitmaps`，再就是这次要说的`heap bitmaps`。在此`bitmap`的做作用是标记标记`arena`(即heap)中的对象。一是的标记对应地址中是否存在对象，另外是标记此对象是否被`gc`标记过。一个功能一个bit位，所以，`heap bitmaps`用两个bit位。
 
-![img.png](go/spans.png)
+![img.png](img/go/spans.png)
 
 go将内存块分为大小不同的67种，然后再把这67种大内存块，逐个分为小块(可以近似理解为大小不同的相当于`page`)称之为`span`(连续的`page`)，在go中就是上文提及的`mspan`。<br/>
 对象分配的时候，根据对象的大小选择大小相近的span，这样，碎片问题就解决了。
 
-![img.png](go/mspan.png)
+![img.png](img/go/mspan.png)
 
 `bitmap`的地址是由高地址向低地址增长的。
 
-![img.png](go/bitmap.png)
-![img.png](go/bitmap_address.png)
+![img.png](img/go/bitmap.png)
+![img.png](img/go/bitmap_address.png)
 
 `mspan`是go中内存管理的基本单元。<br/>
 `mspan`是双向链表，其结构体属性为:
@@ -168,10 +168,10 @@ go将内存块分为大小不同的67种，然后再把这67种大内存块，�
 
 `mcache`： 为了避免多线程申请内存时不断的加锁，goroutine为每个线程分配了`span`内存块的缓存，这个缓存即是`mcache`，每个`goroutine`都会绑定的一个`mcache`，各个`goroutine`申请内存时不存在锁竞争的情况。`mcache`在`GPM`的`P`中，所以没有锁竞争。
 
-![img.png](go/mcache.png)
+![img.png](img/go/mcache.png)
 
 `mcentral`：为所有`mcache`提供切分好的`mspan`。有多少种类型(67)的`mspan`就有多少个`mcentral`。<br/>
-![img.png](go/mcentral.png)
+![img.png](img/go/mcentral.png)
 
 每个`mcentral`都会包含两个`mspan`的列表：
 + 没有空闲对象或`mspan`已经被`mcache`缓存的`mspan`列表(`empty mspanList`)
@@ -180,7 +180,7 @@ go将内存块分为大小不同的67种，然后再把这67种大内存块，�
 由于`mspan`是全局的，会被所有的`mcache`访问，所以会出现并发性问题，因而`mcentral`会存在一个锁。
 
 单个`mcentral`结构：
-![img.png](go/mcentral_indi.png)
+![img.png](img/go/mcentral_indi.png)
 
 `mheap`可以认为是Go程序持有的整个堆空间，`mheap`全局唯一，可以认为是个全局变量。<br/>
 `mheap`包含了除了上文中讲的`mcache`之外的一切。<br/>
@@ -188,7 +188,7 @@ go将内存块分为大小不同的67种，然后再把这67种大内存块，�
 我们知道，大于`32K`的对象被定义为大对象，直接通过`mheap` 分配。这些大对象的申请是由`mcache`发出的，而`mcache`在`P`上，程序运行的时候往往会存在多个`P`，因此，这个内存申请是并发的；所以为了保证线程安全，必须有一个全局锁。<br/>
 假如需要分配的内存时，`mheap`中也没有了，则向操作系统申请一系列新的页`page`（最小`1MB`）。
 
-![img.png](go/mheap.png)
+![img.png](img/go/mheap.png)
 
 ### 内存分配总结
 对象分三种：
@@ -261,7 +261,7 @@ Go GC的写屏障（与内存写屏障是不同概念）是在写入指针前执
 “gcmarkBits”`runtime.markBits`用来标记三色，白色对象为0，灰色或黑色为1。灰色黑色是看是否在扫描队列`runtime.scanobject`中，在队列中为灰色，黑色会出队。
 
 ### GC流程
-![img.png](go/GC_process.png)
+![img.png](img/go/GC_process.png)
 STW（stop the world) 暂停协程保证安全。
 
 ## 7. GPM（未完成）
@@ -282,7 +282,7 @@ P的个数是通过`runtime.GOMAXPROCS`设定（最大256），Go1.5版本之后
 单从线程调度讲，Go语言相比起其他语言的优势在于OS线程是由OS内核来调度的，goroutine则是由Go运行时（runtime）自己的调度器调度的，这个调度器使用一个称为m:n调度的技术（复用/调度m个goroutine到n个OS线程）。 其一大特点是goroutine的调度是在用户态下完成的， 不涉及内核态与用户态之间的频繁切换，包括内存的分配与释放，都是在用户态维护着一块大的内存池， 不直接调用系统的malloc函数（除非内存池需要改变），成本比调度OS线程低很多。 另一方面充分利用了多核的硬件资源，近似的把若干goroutine均分在物理线程上， 再加上本身goroutine的超轻量，以上种种保证了go调度方面的性能。
 
 **GPM结构**：
-![img.png](go/gpm.png)
+![img.png](img/go/gpm.png)
 
 线程成本高主要表现在以下两个方面：
 
@@ -295,7 +295,7 @@ P的个数是通过`runtime.GOMAXPROCS`设定（最大256），Go1.5版本之后
 2. goroutine启动时默认栈大小只有2k，可自动调整容量，可达1GB
 
 **调度流程**：
-![img.png](go/gpm_example.png)
+![img.png](img/go/gpm_example.png)
 
 （G状态流转，栈扩容，合作式抢占，sysmon，P状态流转，M的spin和unspin，LockOSThread）
 

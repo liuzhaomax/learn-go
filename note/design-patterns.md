@@ -30,7 +30,7 @@
 <!-- TOC -->
 
 ---
-![design-patterns.png](go/design-patterns.png)
+![design-patterns.png](img/go/design-patterns.png)
 
 ## 1. 单例模式
 
