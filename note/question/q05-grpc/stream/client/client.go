@@ -66,10 +66,10 @@ func main() {
 			fmt.Println(item.Msg)
 		}
 	}()
-	go func(s []string) {
+	go func(foods []string) {
 		defer wg.Done()
-		for _, item := range s {
-			err := fullClient.Send(&pb.FoodStreamRequest{Name: item})
+		for _, item := range foods {
+			err = fullClient.Send(&pb.FoodStreamRequest{Name: item})
 			if err != nil {
 				fmt.Println(err)
 			}
