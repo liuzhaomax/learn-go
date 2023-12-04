@@ -54,10 +54,10 @@ protoc -I . --go_out=plugins=grpc:. *.proto
 
 ## 5. gRPC的4种请求模式
 
-1. 简单模式 unary
-2. 服务端流式 server side streaming
-3. 客户端流式 client side streaming
-4. 双向流式 bidirectional streaming
+1. 简单模式 unary rpc
+2. 服务端流式 server side streaming rpc
+3. 客户端流式 client side streaming rpc
+4. 双向流式 bidirectional streaming rpc
 
 示例：
 ```protobuf
