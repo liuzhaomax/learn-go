@@ -7,6 +7,11 @@
   * [3. grpc + protobuf](#3-grpc--protobuf)
   * [4. protobuf数据类型](#4-protobuf)
   * [5. gRPC的4种请求模式](#5-grpc4)
+  * [6. go_package](#6-go_package)
+  * [7. 使用protobuf的map,timestamp和枚举](#7-protobufmaptimestamp)
+  * [8. 举例说明message的嵌套和import的用法](#8-messageimport)
+  * [9. grpc的meta data](#9-grpcmeta-data)
+  * [10. grpc的拦截器](#10-grpc)
 <!-- TOC -->
 ----
 
@@ -72,3 +77,56 @@ service RouteGuide {
   rpc Recommend(stream RecommendationRequest) returns (stream Feature) {}
 }
 ```
+
+## 6. go_package
+```
+option go_package="[path];[pkg_name]"
+```
+
+## 7. 使用protobuf的map,timestamp和枚举
+```protobuf
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+option go_package="/pb";
+
+enum Week {
+  Sunday=0;
+  Monday=1;
+  Tuesday=2;
+  Wednesday=3;
+  Thursday=4;
+  Friday=5;
+  Saturday=6;
+}
+message TodoRequest {
+  string todo=1;
+  Week week=2;
+  map<string,string> bookMap=3;
+  google.protobuf.Timestamp doneTime=4;
+}
+message TodoResponse {
+  bool done=1;
+}
+```
+
+## 8. 举例说明message的嵌套和import的用法
+拷贝文件，import路径+文件名
+```protobuf
+import "google/protobuf/empty.proto";
+```
+message嵌套
+```protobuf
+message Employer {
+  string name = 1;
+  uint64 age = 2;
+}
+message CompanyResponse {
+  string name = 1;
+  Employer employer = 2;
+}
+```
+
+## 9. grpc的meta data
+
+## 10. grpc的拦截器
