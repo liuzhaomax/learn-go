@@ -19,7 +19,7 @@ func (t *ToDo) DoWork(ctx context.Context, req *pb.TodoRequest) (*pb.TodoRespons
 		fmt.Println("no metadata")
 	}
 	for k, v := range md {
-		fmt.Printf("%s:%s", k, v)
+		fmt.Printf("%s:%s\n", k, v)
 	}
 	time.Sleep(time.Second * 2)
 	fmt.Println(req.Todo + "已完成！")

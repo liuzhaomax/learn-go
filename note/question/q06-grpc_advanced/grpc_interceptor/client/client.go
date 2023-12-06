@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/metadata"
 	"learn-go/note/question/q06-grpc_advanced/grpc_interceptor/proto/pb"
 	"time"
 )
@@ -24,5 +25,17 @@ func main() {
 		panic(err)
 	}
 	client := pb.NewToDoServiceClient(conn)
-	client.DoWork(context.Background(), &pb.TodoRequest{Todo: "Go语言"})
+
+	// add metadata
+	//md1 := metadata.New(map[string]string{
+	//	"name": "metadata",
+	//})
+	md2 := metadata.Pairs("name", "%3#_@")
+	ctx := metadata.NewOutgoingContext(context.Background(), md2)
+
+	res, err := client.DoWork(ctx, &pb.TodoRequest{Todo: "Go语言"})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(res.Done)
 }

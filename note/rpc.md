@@ -128,5 +128,42 @@ message CompanyResponse {
 ```
 
 ## 9. grpc的meta data
+`"google.golang.org/grpc/metadata"`
+客户端加metadata
+```go
+	// add metadata
+	//md1 := metadata.New(map[string]string{
+	//	"name": "metadata",
+	//})
+	md2 := metadata.Pairs("name", "metadata")
+	ctx := metadata.NewOutgoingContext(context.Background(), md2)
+```
+服务端接收metadata
+```go
+func (t *ToDo) DoWork(ctx context.Context, req *pb.TodoRequest) (*pb.TodoResponse, error) {
+	md, ok := metadata.FromIncomingContext(ctx)
+	if !ok {
+		fmt.Println("no metadata")
+	}
+	for k, v := range md {
+		fmt.Printf("%s:%s", k, v)
+	}
+	time.Sleep(time.Second * 2)
+	fmt.Println(req.Todo + "已完成！")
+	return &pb.TodoResponse{Done: true}, nil
+}
+```
 
 ## 10. grpc的拦截器
+grpc分别提供服务端和客户端两种拦截器，分别管理接收请求和发送请求的其他工作。
+拦截器很像中间件，原理很像是AOP的钩子，利用注册拦截器作为回调函数，将拦截器注册到选项对象中，
+服务启动时，通过`newFuncServerOption`一并生成选项的`struct`，再通过遍历这个`struct`，循环调用选项的`apply`接口方法，
+从而将拦截器函数注入到server的`opts`这个`grpc.serverOptions`中。<br/>
+
+每一个tcp请求都会过拦截器，对于单一模式的服务端，调用链如下：<br/>
+main.go → s.Serve → s.handleRawConn → s.serveStreams(st) → s.handleStream → s.processUnaryRPC
+→ md.Handler 。此时来到`.pb.go`文件的被call的`service handler`方法，可见原handler方法被以参数方式传递入拦截器，
+而当前被执行的`service handler`返回时，执行作为参数通过`s.opts.unaryInt`键传入的拦截器函数，从而执行自定义的拦截器。<br/>
+
+由于真正的service函数被作为handler参数传入自定义拦截器，我们可以更灵活的改变拦截器功能与实际service的执行顺序。
+个人感觉要比AOP定义不同的钩子更加便于维护，可读性也变得更强。妙啊。
