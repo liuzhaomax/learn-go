@@ -30,9 +30,3 @@ func getAnagram(s string) int32 {
 	}
 	return res
 }
-
-//func main() {
-//	s := "123456"
-//
-//	fmt.Println(getAnagram(s))
-//}

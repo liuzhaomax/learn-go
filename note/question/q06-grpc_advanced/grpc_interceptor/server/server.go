@@ -4,7 +4,9 @@ import (
 	"context"
 	"fmt"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
+	"google.golang.org/grpc/status"
 	"learn-go/note/question/q06-grpc_advanced/grpc_interceptor/proto/pb"
 	"net"
 	"time"
@@ -31,6 +33,10 @@ func MyInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerI
 	resp, err = handler(ctx, req)
 	d := time.Now().Sub(now)
 	fmt.Printf("执行时间: %d\n", d.Milliseconds())
+	//st := status.New(codes.Unauthenticated, "未授权")
+	//err = st.Err()
+	err = status.Error(codes.Unauthenticated, "未授权啊")
+	fmt.Println(codes.Unauthenticated)
 	return
 }
 
