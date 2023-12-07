@@ -36,7 +36,7 @@ func MyInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerI
 	//st := status.New(codes.Unauthenticated, "未授权")
 	//err = st.Err()
 	err = status.Error(codes.Unauthenticated, "未授权啊")
-	fmt.Println(codes.Unauthenticated)
+	fmt.Println(int(codes.Unauthenticated))
 	return
 }
 
