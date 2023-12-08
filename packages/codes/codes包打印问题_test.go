@@ -1,4 +1,4 @@
-package algorithm
+package codes
 
 import (
 	"fmt"
