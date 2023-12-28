@@ -8,8 +8,11 @@ require (
 	github.com/google/wire v0.5.0
 	github.com/graphql-go/graphql v0.8.0
 	github.com/graphql-go/handler v0.2.3
+	github.com/kjk/betterguid v0.0.0-20170621091430-c442874ba63a
+	github.com/lithammer/shortuuid v3.0.0+incompatible
 	github.com/magiconair/properties v1.8.6
 	github.com/mattn/go-colorable v0.1.12
+	github.com/satori/go.uuid v1.2.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/snowzach/rotatefilehook v0.0.0-20220211133110-53752135082d
 	github.com/spf13/viper v1.12.0
@@ -30,6 +33,7 @@ require (
 	github.com/go-playground/validator/v10 v10.10.0 // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
+	github.com/google/uuid v1.5.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
@@ -41,7 +45,6 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.2 // indirect
-	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/spf13/afero v1.9.2 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
