@@ -11,7 +11,7 @@ require (
 	github.com/kjk/betterguid v0.0.0-20170621091430-c442874ba63a
 	github.com/lithammer/shortuuid v3.0.0+incompatible
 	github.com/magiconair/properties v1.8.6
-	github.com/mattn/go-colorable v0.1.12
+	github.com/mattn/go-colorable v0.1.13
 	github.com/satori/go.uuid v1.2.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/snowzach/rotatefilehook v0.0.0-20220211133110-53752135082d
@@ -25,6 +25,8 @@ require (
 )
 
 require (
+	github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be // indirect
+	github.com/dimiro1/banner v1.1.0 // indirect
 	github.com/frankban/quicktest v1.14.5 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
