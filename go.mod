@@ -17,7 +17,7 @@ require (
 	github.com/snowzach/rotatefilehook v0.0.0-20220211133110-53752135082d
 	github.com/spf13/viper v1.12.0
 	go.uber.org/zap v1.22.0
-	golang.org/x/net v0.0.0-20220805013720-a33c5aa5df48
+	golang.org/x/net v0.10.0
 	google.golang.org/grpc v1.48.0
 	google.golang.org/protobuf v1.28.1
 	gorm.io/driver/mysql v1.5.2
@@ -25,6 +25,7 @@ require (
 )
 
 require (
+	github.com/anaskhan96/go-password-encoder v0.0.0-20201010210601-c765b799fd72 // indirect
 	github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be // indirect
 	github.com/dimiro1/banner v1.1.0 // indirect
 	github.com/frankban/quicktest v1.14.5 // indirect
@@ -55,9 +56,9 @@ require (
 	github.com/ugorji/go/codec v1.2.6 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
-	golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4 // indirect
+	golang.org/x/crypto v0.17.0 // indirect
 	golang.org/x/sys v0.15.0 // indirect
-	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/text v0.14.0 // indirect
 	google.golang.org/genproto v0.0.0-20220804142021-4e6b2dfa6612 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
