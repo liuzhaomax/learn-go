@@ -21,3 +21,9 @@ func TestGin(t *testing.T) {
 	r.GET("/health", HealthHandler)
 	r.Run(addr)
 }
+
+// func TestGRPC(t *testing.T) {
+// 	// 前面定义server
+// 	grpc_health_v1.RegisterHealthServer(server, health.NewServer())
+// 	// 后面加listen
+// }

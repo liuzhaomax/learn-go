@@ -26,6 +26,7 @@ func Reg(name, id, host, port string, tags []string) error {
 	agentServiceRegistration.Tags = tags
 	serverAddr := fmt.Sprintf("http://%s:%s/health", host, port)
 	check := api.AgentServiceCheck{
+		// GRPC: serverAddr,
 		HTTP:                           serverAddr,
 		Timeout:                        "3s",
 		Interval:                       "1s",
