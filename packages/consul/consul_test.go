@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	err := Reg("test1", "test_1", "127.0.0.1", "9208", []string{"test1"})
+	err := Reg("test1", "test_1", "172.26.160.1", "9208", []string{"test1"})
 	if err != nil {
 		fmt.Println(err)
 	} else {
@@ -16,7 +16,7 @@ func init() {
 }
 
 func TestGin(t *testing.T) {
-	addr := "127.0.0.1:9208"
+	addr := "0.0.0.0:9208"
 	r := gin.Default()
 	r.GET("/health", HealthHandler)
 	r.Run(addr)
