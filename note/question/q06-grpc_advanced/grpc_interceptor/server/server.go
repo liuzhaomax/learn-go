@@ -20,6 +20,7 @@ func (t *ToDo) DoWork(ctx context.Context, req *pb.TodoRequest) (*pb.TodoRespons
 	if !ok {
 		fmt.Println("no metadata")
 	}
+	fmt.Println(md["name"][0])
 	for k, v := range md {
 		fmt.Printf("%s:%s\n", k, v)
 	}
@@ -33,8 +34,8 @@ func MyInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerI
 	resp, err = handler(ctx, req)
 	d := time.Now().Sub(now)
 	fmt.Printf("执行时间: %d\n", d.Milliseconds())
-	//st := status.New(codes.Unauthenticated, "未授权")
-	//err = st.Err()
+	// st := status.New(codes.Unauthenticated, "未授权")
+	// err = st.Err()
 	err = status.Error(codes.Unauthenticated, "未授权啊")
 	fmt.Println(int(codes.Unauthenticated))
 	return
