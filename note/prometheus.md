@@ -13,6 +13,12 @@
     * [4.1 Exporter来源](#41-exporter)
     * [4.2 Exporter类型](#42-exporter)
     * [4.3 Exporter规范](#43-exporter)
+  * [5. 监控Nginx](#5-nginx)
+    * [5.1 准备工作](#51-)
+    * [5.2 安装和配置nginx exporter](#52-nginx-exporter)
+    * [5.3 常用指标](#53-)
+    * [5.4 配置报警器](#54-)
+    * [5.5 配置面板](#55-)
 <!-- TOC -->
 
 ## 1. 时间序列
@@ -323,3 +329,18 @@ curl -X POST http://宿主机ip:9090/-/reload
 ### 5.5 配置面板
 
 > https://grafana.com/grafana/dashboards/12708
+
+## 6. 告警系统
+
+使用 Alertmanager
+
+### 6.1 告警机制
+
++ 分组：将告警信息合并成一个通知，例如网络故障引发的多个服务宕机
++ 抑制：某一个告警后，其他引发的告警不会再发送
++ 静默：不发送告警
+
+### 6.2 配置Alertmanager
+
+见前面
+
