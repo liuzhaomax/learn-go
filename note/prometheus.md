@@ -344,3 +344,15 @@ curl -X POST http://宿主机ip:9090/-/reload
 
 见前面
 
+### 6.3 发送告警邮件
+
+163邮箱开启SMTP服务 POP3/SMTP
+
+将复制的验证码填入配置文件`smtp_auth_password`下
+
+重新加载配置
+```shell
+curl -X POST http://宿主机ip:9093/-/reload
+```
+
+> 注意：修改邮箱密码后，POP3/SMTP服务会自动关闭
