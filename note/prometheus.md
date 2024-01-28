@@ -223,8 +223,103 @@ prometheus_tsdb_wal_fsync_duration_seconds_sum 0.092663245
 
 ## 5. 监控Nginx
 
-检查是否安装 with-http_stub_status_module
+### 5.1 准备工作
 
+检查是否安装 with-http_stub_status_module
 ```shell
 docker exec -it nginx_main nginx -V 2>&l | grep -o with-http_stub_status_module
 ```
+
+nginx开启stub_status配置
+```nginx configuration
+server {
+    location /stub_status {
+        stub_status on;
+        access_log off;
+        allow 0.0.0.0/0;
+        deny all;
+    }
+}
+```
+
+```shell
+# 重新加载配置
+docker exec -it nginx_main nginx -s reload
+# 检查是否正常
+curl http://宿主机外网IP/stub_status
+```
+
+参数解释：
++ Active connections: 活动连接数
++ accepts: 接收请求数
++ handled: 成功处理请求数
++ requests: 总请求数
++ reading: 正在进行读操作的请求数
++ writing: 正在进行写操作的请求数
++ waiting: 正在等待的请求数
+
+### 5.2 安装和配置nginx exporter
+
+docker-compose 安装
+
+访问地址，验证
+> http://宿主机外网ip:9113/metrics
+
+配置prometheus
+```yaml
+# 增加一个job
+# 监控nginx
+- job_name: 'nginx-exporter'
+  scrape_interval: 15s
+  static_configs:
+    - targets: ['nginx_exporter:9113']
+      labels:
+        instance: Prometheus服务器Nginx
+```
+
+重新加载配置
+```shell
+curl -X POST http://宿主机ip:9090/-/reload
+```
+
+### 5.3 常用指标
+
++ nginx_connections_accepted  接收请求数
++ nginx_connections_active    活动连接数
++ nginx_connections_handled   成功处理请求数
++ nginx_connections_reading   正在进行读操作的请求数
++ nginx_connections_writing   正在进行写操作的请求数
++ nginx_connections_waiting   正在等待的请求数
++ nginx_connections_requests  总请求数
+
+### 5.4 配置报警器
+
+配置alert.yml
+```yaml
+groups:
+  - name: Nginx
+    rules:
+      - alert: Nginx Down
+        expr: nginx_up == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "nginx异常,实例:{{ $labels.instance }}"
+          description: "{{ $labels.job }} nginx已关闭"
+```
+
+检查配置
+```shell
+docker exec -it prometheus promtool check config /etc/prometheus/prometheus.yml
+```
+![nginx报警器配置成功.png](img/prometheus/nginx报警器配置成功.png)
+
+重新加载配置
+```shell
+curl -X POST http://宿主机ip:9090/-/reload
+```
+
+### 5.5 配置面板
+
+> https://grafana.com/grafana/dashboards/12708
