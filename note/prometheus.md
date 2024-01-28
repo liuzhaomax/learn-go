@@ -19,6 +19,11 @@
     * [5.3 常用指标](#53-)
     * [5.4 配置报警器](#54-)
     * [5.5 配置面板](#55-)
+  * [6. 告警系统](#6-)
+    * [6.1 告警机制](#61-)
+    * [6.2 配置Alertmanager](#62-alertmanager)
+    * [6.3 发送告警邮件](#63-)
+    * [6.4 使用告警邮件模板](#64-)
 <!-- TOC -->
 
 ## 1. 时间序列
@@ -356,3 +361,40 @@ curl -X POST http://宿主机ip:9093/-/reload
 ```
 
 > 注意：修改邮箱密码后，POP3/SMTP服务会自动关闭
+
+> 企业钉钉和企业微信推送也可配置
+
+> 
+
+### 6.4 使用告警邮件模板
+
+```tmpl
+{{ define "email.html" }}
+{{- if gt (len .Alerts.Firing) 0 -}}{{ range .Alerts}}
+<h2>@告警通知</h2>
+告警程序：prometheus_alert <br>
+告警级别：{{ .Labels.severity }} 级 <br>
+告警类型：{{ .Labels.alertname }} <br>
+故障主机：{{ .Labels.instance }} <br>
+告警主题：{{ .Annotations.summary }} <br>
+告警详情：{{ .Annotations.description }} <br>
+触发时间：{{ .StartsAt.Local.Format "2006-01-02 15:04:05" }} <br>
+{{ end }}{{ end -}}
+{{- if gt (len .Alerts.Resolved) 0 -}}{{ range .Alerts}}
+<h2>@告警恢复</h2>
+告警程序：prometheus_alert <br>
+故障主机：{{ .Labels.instance }} <br>
+告警主题：{{ .Annotations.summary }} <br>
+告警详情：{{ .Annotations.description }} <br>
+触发时间：{{ .StartsAt.Local.Format "2006-01-02 15:04:05" }} <br>
+恢复时间：{{ .EndAt.Local.Format "2006-01-02 15:04:05" }} <br>
+{{ end }}{{ end -}}
+{{- end }}
+```
+
+> 注意同样配置alertmanager的config.yml
+
+重新加载配置
+```shell
+curl -X POST http://宿主机ip:9093/-/reload
+```
