@@ -70,7 +70,7 @@ process_open_fds{instance="172.16.96.97:9090", job="prometheus"}
 
 > gauge和counter是数值指标，代表数据的变化情况；histogram和summary是统计类型指标，表示数据的分布情况。
 
-在exporter返回的赝本数据中，其注释包含了该样本的类型，例如：
+在exporter返回的样本数据中，其注释包含了该样本的类型，例如：
 ```promql
 # HELP process_virtual_memory_bytes Virtual memory size in bytes.
 # TYPE process_virtual_memory_bytes gauge
