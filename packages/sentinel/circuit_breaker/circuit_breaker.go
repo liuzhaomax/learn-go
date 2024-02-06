@@ -67,7 +67,7 @@ func main() {
 				// g1 blocked
 				time.Sleep(time.Duration(rand.Uint64()%20) * time.Millisecond)
 			} else {
-				if rand.Uint64()%20 > 9 {
+				if time.Now().Unix()%2 == 0 {
 					// Record current invocation as error.
 					sentinel.TraceError(e, errors.New("biz error"))
 				}
