@@ -47,12 +47,13 @@ func main() {
 		// Statistic time span=5s, recoveryTimeout=3s, maxErrorCount=50
 		{
 			Resource:                     "abc",
-			Strategy:                     circuitbreaker.ErrorCount,
-			RetryTimeoutMs:               3000,
-			MinRequestAmount:             10,
-			StatIntervalMs:               5000,
-			StatSlidingWindowBucketCount: 10,
-			Threshold:                    50,
+			Strategy:                     circuitbreaker.SlowRequestRatio, // 慢调用熔断策略
+			RetryTimeoutMs:               3000,                            // 熔断触发后持续3秒
+			MinRequestAmount:             10,                              // 周期内，触发熔断的最小请求数目，请求数小于此数值，即使到达熔断条件，也不会触发熔断
+			StatIntervalMs:               1000,                            // 窗口长度
+			StatSlidingWindowBucketCount: 10,                              // 随着桶数的增加，统计数据会更加精确，但内存成本也会增加，“StatIntervalMs % StatSlidingWindowBucketCount == 0”，否则StatSlidingWindowBucketCount将被1取代
+			Threshold:                    0.5,                             // 触发慢调用熔断比例
+			MaxAllowedRtMs:               100,                             // 慢调用判断条件
 		},
 	})
 	if err != nil {
@@ -67,7 +68,7 @@ func main() {
 				// g1 blocked
 				time.Sleep(time.Duration(rand.Uint64()%20) * time.Millisecond)
 			} else {
-				if time.Now().Unix()%2 == 0 {
+				if time.Now().Unix()%2 == 0 { // 模拟错误
 					// Record current invocation as error.
 					sentinel.TraceError(e, errors.New("biz error"))
 				}
