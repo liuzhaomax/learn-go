@@ -11,4 +11,10 @@
 |  流量整形  |    支持慢启动、匀速器模式     |     不支持     |
 | 系统负载保护 |         支持         |     不支持     |
 
-## 2.
+## 2. 限流 
+
+> https://sentinelguard.io/zh-cn/docs/golang/flow-control.html
+
+## 3. 熔断 降级
+
+> https://sentinelguard.io/zh-cn/docs/golang/circuit-breaking.html
