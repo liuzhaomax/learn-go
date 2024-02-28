@@ -65,7 +65,7 @@ func empath(game Game, empathIndex int) int {
 				}
 			}
 		}
-		if leftPrev == left && rightPrev == right {
+		if leftPrev == left && rightPrev == right || left == right {
 			break
 		}
 	}
