@@ -1,17 +1,5 @@
 package algorithm
 
-type Game struct {
-	Players []Player
-}
-
-type Player struct {
-	State State
-}
-
-type State struct {
-	Evil bool
-}
-
 func chef(game Game) int {
 	connected := 0
 	meetEvil := false
