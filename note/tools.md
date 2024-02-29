@@ -20,3 +20,6 @@ RSA加解密
 
 缩小字体文件
 > https://blog.csdn.net/qq_32228265/article/details/120525130
+
+图片压缩
+> https://tinypng.com/
