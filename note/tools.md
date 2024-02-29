@@ -17,3 +17,6 @@ Base64编解码
 
 RSA加解密
 > https://www.bejson.com/enc/rsa/#google_vignette
+
+缩小字体文件
+> https://blog.csdn.net/qq_32228265/article/details/120525130
