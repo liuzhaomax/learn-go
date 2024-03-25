@@ -26,7 +26,7 @@ func CreateTopic(topicName string) {
 }
 
 func main() {
-	CreateTopic("testTopic")
+	// CreateTopic("testTopic")
 	// 创建生产者实例
 	producer1, err := rocketmq.NewProducer(
 		producer.WithNameServer([]string{"106.15.94.179:9876"}),
