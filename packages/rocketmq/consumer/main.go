@@ -11,7 +11,7 @@ import (
 func main() {
 	// 创建消费者实例
 	consumer1, err := rocketmq.NewPushConsumer(
-		consumer.WithNameServer([]string{"127.0.0.1:9876"}),
+		consumer.WithNameServer([]string{"106.15.94.179:9876"}),
 		consumer.WithGroupName("testGroup"),
 	)
 	if err != nil {
