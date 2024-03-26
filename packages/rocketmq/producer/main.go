@@ -7,6 +7,7 @@ import (
 	"github.com/apache/rocketmq-client-go/v2/admin"
 	"github.com/apache/rocketmq-client-go/v2/primitive"
 	"github.com/apache/rocketmq-client-go/v2/producer"
+	"time"
 )
 
 func CreateTopic(topicName string) {
@@ -31,6 +32,7 @@ func main() {
 	producer1, err := rocketmq.NewProducer(
 		producer.WithNameServer([]string{"106.15.94.179:9876"}),
 		producer.WithRetry(2), // 尝试发送数据的次数
+		producer.WithSendMsgTimeout(time.Second*3),
 		producer.WithGroupName("testGroup"),
 	)
 	if err != nil {
