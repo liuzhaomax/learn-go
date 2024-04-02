@@ -1,10 +1,11 @@
 module learn-go
 
-go 1.21
+go 1.22.1
 
 require (
 	github.com/alibaba/sentinel-golang v1.0.4
 	github.com/anaskhan96/go-password-encoder v0.0.0-20201010210601-c765b799fd72
+	github.com/apache/rocketmq-client-go/v2 v2.1.2
 	github.com/dimiro1/banner v1.1.0
 	github.com/gin-gonic/gin v1.7.7
 	github.com/golang/protobuf v1.5.3
@@ -26,7 +27,7 @@ require (
 	go.etcd.io/etcd/api/v3 v3.5.11
 	go.etcd.io/etcd/client/v3 v3.5.11
 	go.uber.org/zap v1.26.0
-	golang.org/x/net v0.20.0
+	golang.org/x/net v0.22.0
 	google.golang.org/grpc v1.60.1
 	google.golang.org/protobuf v1.32.0
 	gorm.io/driver/mysql v1.5.2
@@ -36,8 +37,6 @@ require (
 require (
 	github.com/HdrHistogram/hdrhistogram-go v1.1.2 // indirect
 	github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d // indirect
-	github.com/apache/rocketmq-client-go v1.2.5 // indirect
-	github.com/apache/rocketmq-client-go/v2 v2.1.2 // indirect
 	github.com/armon/go-metrics v0.4.1 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
@@ -98,7 +97,7 @@ require (
 	go.etcd.io/etcd/client/pkg/v3 v3.5.11 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/crypto v0.18.0 // indirect
+	golang.org/x/crypto v0.21.0 // indirect
 	golang.org/x/exp v0.0.0-20240119083558-1b970713d09a // indirect
 	golang.org/x/sys v0.18.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
