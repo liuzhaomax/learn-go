@@ -19,6 +19,7 @@ require (
 	github.com/mattn/go-colorable v0.1.13
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/prometheus/client_golang v1.18.0
+	github.com/redis/go-redis/v9 v9.5.1
 	github.com/satori/go.uuid v1.2.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/snowzach/rotatefilehook v0.0.0-20220211133110-53752135082d
@@ -43,6 +44,7 @@ require (
 	github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be // indirect
 	github.com/coreos/go-semver v0.3.1 // indirect
 	github.com/coreos/go-systemd/v22 v22.5.0 // indirect
+	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/fatih/color v1.16.0 // indirect
 	github.com/frankban/quicktest v1.14.5 // indirect
