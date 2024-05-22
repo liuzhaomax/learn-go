@@ -6,7 +6,7 @@ func Throttle(f func(), wait int) func() {
 	var cf context.CancelFunc
 	return func() {
 		if cf == nil {
-			cf = SetTimeout(f, wait)
+			cf = SetInterval(f, wait)
 		}
 	}
 }
