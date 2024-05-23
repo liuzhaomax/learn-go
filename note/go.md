@@ -303,6 +303,8 @@ P的个数是通过`runtime.GOMAXPROCS`设定（最大256），Go1.5版本之后
 
 （G状态流转，栈扩容，合作式抢占，sysmon，P状态流转，M的spin和unspin，LockOSThread）
 
+goroutine会在GC的STW和栈扫描阶段进行抢占
+
 ## 8. runtime包
 职责：
 + 协程调度，内存分配，GC
