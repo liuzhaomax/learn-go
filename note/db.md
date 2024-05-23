@@ -218,7 +218,7 @@ MySQL与ElasticSearch数据结构不同
 
 A去同步B，调用B的接口，会产生强耦合（A需要知道B接口的功能）。
 
-阿里巴巴 Canal 中间件：监听relaylog，自动触发Java代码向ES同步。解决监听问题。
+阿里巴巴 Canal 中间件：监听relaylog，自动触发Java代码向ES同步。解决监听问题。监听binlog可以同时利用MQ更新缓存。
 
 MQ（解决耦合问题）
 
