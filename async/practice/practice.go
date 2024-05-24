@@ -7,12 +7,15 @@ import (
 
 func animal(wg *sync.WaitGroup, ch chan string) {
 	var value string
-	defer wg.Done()
 	go func() {
 		for {
 			select {
 			case value = <-ch:
 				fmt.Println(value)
+				// if value == "fish" {
+				//     time.Sleep(time.Second)
+				// }
+				wg.Done()
 				switch value {
 				case "cat":
 					ch <- "dog"
@@ -20,13 +23,10 @@ func animal(wg *sync.WaitGroup, ch chan string) {
 				case "dog":
 					ch <- "fish"
 					return
-				default:
+				case "fish":
 					ch <- "cat"
 					return
 				}
-			default:
-				fmt.Println("wrong")
-				return
 			}
 		}
 	}()
@@ -35,7 +35,7 @@ func animal(wg *sync.WaitGroup, ch chan string) {
 func run() {
 	var wg sync.WaitGroup
 	ch := make(chan string, 1)
-	// defer close(ch)
+	defer close(ch)
 	animals := []string{"cat", "dog", "fish"}
 	ch <- "cat"
 	for i := 0; i < 5; i++ {
