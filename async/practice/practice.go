@@ -39,7 +39,7 @@ func run() {
 	animals := []string{"cat", "dog", "fish"}
 	ch <- "cat"
 	for i := 0; i < 5; i++ {
-		wg.Add(3)
+		wg.Add(len(animals))
 		for range animals {
 			animal(&wg, ch)
 		}
