@@ -24,8 +24,9 @@ func WorkCat1(chPrev chan bool, chCurr chan bool, wg *sync.WaitGroup) {
 			fmt.Println("cat")
 			chCurr <- true
 			<-chPrev
+			wg.Done()
+			return
 		}
-		wg.Done()
 	}()
 }
 
@@ -36,8 +37,9 @@ func WorkDog1(chPrev chan bool, chCurr chan bool, wg *sync.WaitGroup) {
 			<-chPrev
 			fmt.Println("dog")
 			chCurr <- true
+			wg.Done()
+			return
 		}
-		wg.Done()
 	}()
 }
 
@@ -49,7 +51,8 @@ func WorkFish1(chPrev chan bool, chCurr chan bool, wg *sync.WaitGroup) {
 			fmt.Println("fish")
 			time.Sleep(time.Second)
 			chCurr <- true
+			wg.Done()
+			return
 		}
-		wg.Done()
 	}()
 }

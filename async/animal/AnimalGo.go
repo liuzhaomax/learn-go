@@ -15,27 +15,19 @@ func AnimalGo() {
 	for {
 		select {
 		case <-chCat:
-			go WorkCat(chDog, "cat")
+			go Animal(chDog, "cat")
 		case <-chDog:
-			go WorkDog(chFish, "dog")
+			go Animal(chFish, "dog")
 		case <-chFish:
-			go WorkFish(chCat, "fish")
+			go Animal(chCat, "fish")
 		}
 	}
 }
 
-func WorkCat(ch chan bool, animal string) {
+func Animal(ch chan bool, animal string) {
 	fmt.Println(animal)
-	ch <- true
-}
-
-func WorkDog(ch chan bool, animal string) {
-	fmt.Println(animal)
-	ch <- true
-}
-
-func WorkFish(ch chan bool, animal string) {
-	fmt.Println(animal)
-	time.Sleep(time.Second)
+	if animal == "fish" {
+		time.Sleep(time.Second)
+	}
 	ch <- true
 }
