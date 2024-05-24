@@ -10,6 +10,7 @@ func SetTimeout(f func(), timeout int) context.CancelFunc {
 	go func() {
 		select {
 		case <-ctx.Done():
+			return
 		case <-time.After(time.Duration(timeout) * time.Second):
 			f()
 		}
