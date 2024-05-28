@@ -27,7 +27,6 @@ func check(arr []int, target int) bool {
 func check1(arr []int, target int) bool {
 	i := 0
 	j := len(arr) - 1
-
 	for {
 		if i >= j {
 			break
