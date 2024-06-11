@@ -17,12 +17,12 @@ import (
 func TestGenImplementation(t *testing.T) {
 	// 解析 Go 源码文件
 	fset := token.NewFileSet()
-	file, err := parser.ParseFile(fset, "packages/ast/advanced/interface_definition.go", nil, parser.ParseComments)
+	file, err := parser.ParseFile(fset, "interface_definition.go", nil, parser.ParseComments) // 如果使用main，要加上dir：packages/ast/advanced/
 	if err != nil {
 		log.Panicln(err.Error())
 	}
 
-	outFile, err := parser.ParseFile(fset, "packages/ast/advanced/out.go", "package "+file.Name.Name, parser.ParseComments)
+	outFile, err := parser.ParseFile(fset, "out.go", "package "+file.Name.Name, parser.ParseComments)
 	// 遍历 AST，寻找接口
 	ast.Inspect(file, func(node ast.Node) bool {
 		if genDecl, ok := node.(*ast.GenDecl); ok && genDecl.Tok == token.TYPE {
@@ -37,7 +37,7 @@ func TestGenImplementation(t *testing.T) {
 		return true
 	})
 
-	if err := SaveASTToFile("packages/ast/advanced/out.go", fset, outFile); err != nil {
+	if err := SaveASTToFile("out.go", fset, outFile); err != nil {
 		log.Panicln(err.Error())
 	}
 }
