@@ -1,4 +1,4 @@
-package main
+package advanced
 
 import (
 	"bytes"
@@ -11,17 +11,18 @@ import (
 	"os"
 	"reflect"
 	"strings"
+	"testing"
 )
 
-func main() {
+func TestGenImplementation(t *testing.T) {
 	// 解析 Go 源码文件
 	fset := token.NewFileSet()
-	file, err := parser.ParseFile(fset, "packages/ast/interface_definition.go", nil, parser.ParseComments)
+	file, err := parser.ParseFile(fset, "packages/ast/advanced/interface_definition.go", nil, parser.ParseComments)
 	if err != nil {
 		log.Panicln(err.Error())
 	}
 
-	outFile, err := parser.ParseFile(fset, "packages/ast/out.go", "package "+file.Name.Name, parser.ParseComments)
+	outFile, err := parser.ParseFile(fset, "packages/ast/advanced/out.go", "package "+file.Name.Name, parser.ParseComments)
 	// 遍历 AST，寻找接口
 	ast.Inspect(file, func(node ast.Node) bool {
 		if genDecl, ok := node.(*ast.GenDecl); ok && genDecl.Tok == token.TYPE {
@@ -36,7 +37,7 @@ func main() {
 		return true
 	})
 
-	if err := SaveASTToFile("packages/ast/out.go", fset, outFile); err != nil {
+	if err := SaveASTToFile("packages/ast/advanced/out.go", fset, outFile); err != nil {
 		log.Panicln(err.Error())
 	}
 }
