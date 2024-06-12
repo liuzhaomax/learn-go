@@ -1,4 +1,4 @@
-package example
+package simple
 
 import (
 	"go/ast"
