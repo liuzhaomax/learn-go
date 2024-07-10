@@ -1,0 +1,25 @@
+version: '3.3'
+services:
+  go-ms-template:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - apache2
+      - nodeapp
+
+  apache2:
+    image: httpd:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./apache2.conf:/usr/local/apache2/conf/httpd.conf
+
+  nodeapp:
+    build: ./node-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./node-app:/usr/src/app
