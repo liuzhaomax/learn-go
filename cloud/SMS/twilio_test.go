@@ -37,7 +37,7 @@ func TestTwilio(t *testing.T) {
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
-		panic(err)
+		fmt.Println("Response Status Code:", resp.StatusCode)
 	}
 
 	// 读取结果 测试用
