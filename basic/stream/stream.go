@@ -7,6 +7,8 @@ import (
 	"net/http"
 )
 
+// 发送请求给LLM 并流式获取响应，同时
+
 func main() {
 	http.HandleFunc("/stream", func(w http.ResponseWriter, r *http.Request) {
 		// 检查请求方法
@@ -49,22 +51,24 @@ func main() {
 
 		reader := bufio.NewReader(resp.Body)
 		for {
-			line, err := reader.ReadBytes('\n')
+			// 逐字读取
+			bytee, err := reader.ReadByte()
 			if err != nil {
 				if err == io.EOF {
-					break
+					break // 达到输入流的末尾
 				}
 				log.Println("读取 LLM 响应失败:", err)
 				return
 			}
 
-			_, err = w.Write(line)
+			// 逐字写入
+			_, err = w.Write([]byte{bytee})
 			if err != nil {
 				log.Println("写入响应失败:", err)
 				return
 			}
 
-			flusher.Flush()
+			flusher.Flush() // 每次发送后立即刷新
 		}
 	})
 
