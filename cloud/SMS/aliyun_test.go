@@ -9,6 +9,7 @@ import (
 	console "github.com/alibabacloud-go/tea-console/client"
 	util "github.com/alibabacloud-go/tea-utils/service"
 	"github.com/alibabacloud-go/tea/tea"
+	"log"
 	"testing"
 )
 
@@ -47,39 +48,39 @@ func SendSMSCode(args []*string) (_err error) {
 	}
 
 	bizId := sendResp.Body.BizId
-	// 2. 等待 10 秒后查询结果
-	_err = util.Sleep(tea.Int(10000))
-	if _err != nil {
-		return _err
-	}
-	// 3.查询结果
-	phoneNums := string_.Split(args[0], tea.String(","), tea.Int(-1))
-	for _, phoneNum := range phoneNums {
-		queryReq := &dysmsapi.QuerySendDetailsRequest{
-			PhoneNumber: util.AssertAsString(phoneNum),
-			BizId:       bizId,
-			SendDate:    time.Format(tea.String("yyyyMMdd")),
-			PageSize:    tea.Int64(10),
-			CurrentPage: tea.Int64(1),
-		}
-		queryResp, _err := client.QuerySendDetails(queryReq)
-		if _err != nil {
-			return _err
-		}
-
-		dtos := queryResp.Body.SmsSendDetailDTOs.SmsSendDetailDTO
-		// 打印结果
-		for _, dto := range dtos {
-			if tea.BoolValue(util.EqualString(tea.String(tea.ToString(tea.Int64Value(dto.SendStatus))), tea.String("3"))) {
-				console.Log(tea.String(tea.StringValue(dto.PhoneNum) + " 发送成功，接收时间: " + tea.StringValue(dto.ReceiveDate)))
-			} else if tea.BoolValue(util.EqualString(tea.String(tea.ToString(tea.Int64Value(dto.SendStatus))), tea.String("2"))) {
-				console.Log(tea.String(tea.StringValue(dto.PhoneNum) + " 发送失败"))
-			} else {
-				console.Log(tea.String(tea.StringValue(dto.PhoneNum) + " 正在发送中..."))
+	go func() {
+		// 2. 等待 10 秒后查询结果
+		_ = util.Sleep(tea.Int(10000))
+		// 3.查询结果
+		phoneNums := string_.Split(args[0], tea.String(","), tea.Int(-1))
+		for _, phoneNum := range phoneNums {
+			queryReq := &dysmsapi.QuerySendDetailsRequest{
+				PhoneNumber: util.AssertAsString(phoneNum),
+				BizId:       bizId,
+				SendDate:    time.Format(tea.String("yyyyMMdd")),
+				PageSize:    tea.Int64(10),
+				CurrentPage: tea.Int64(1),
+			}
+			queryResp, _err := client.QuerySendDetails(queryReq)
+			if _err != nil {
+				log.Println(_err)
+				continue
 			}
 
+			dtos := queryResp.Body.SmsSendDetailDTOs.SmsSendDetailDTO
+			// 打印结果
+			for _, dto := range dtos {
+				if tea.BoolValue(util.EqualString(tea.String(tea.ToString(tea.Int64Value(dto.SendStatus))), tea.String("3"))) {
+					console.Log(tea.String(tea.StringValue(dto.PhoneNum) + " 发送成功，接收时间: " + tea.StringValue(dto.ReceiveDate)))
+				} else if tea.BoolValue(util.EqualString(tea.String(tea.ToString(tea.Int64Value(dto.SendStatus))), tea.String("2"))) {
+					console.Log(tea.String(tea.StringValue(dto.PhoneNum) + " 发送失败"))
+				} else {
+					console.Log(tea.String(tea.StringValue(dto.PhoneNum) + " 正在发送中..."))
+				}
+
+			}
 		}
-	}
+	}()
 	return _err
 }
 
