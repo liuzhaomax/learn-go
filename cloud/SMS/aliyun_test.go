@@ -13,7 +13,7 @@ import (
 )
 
 // 使用AK&SK初始化账号Client
-func CreateClient(accessKeyId *string, accessKeySecret *string) (_result *dysmsapi.Client, _err error) {
+func CreateSMSClient(accessKeyId *string, accessKeySecret *string) (_result *dysmsapi.Client, _err error) {
 	config := &openapi.Config{}
 	config.AccessKeyId = accessKeyId
 	config.AccessKeySecret = accessKeySecret
@@ -23,7 +23,7 @@ func CreateClient(accessKeyId *string, accessKeySecret *string) (_result *dysmsa
 }
 
 func SendSMSCode(args []*string) (_err error) {
-	client, _err := CreateClient(env.GetEnv(tea.String("ACCESS_KEY_ID")), env.GetEnv(tea.String("ACCESS_KEY_SECRET")))
+	client, _err := CreateSMSClient(env.GetEnv(tea.String("ACCESS_KEY_ID")), env.GetEnv(tea.String("ACCESS_KEY_SECRET")))
 	if _err != nil {
 		return _err
 	}
