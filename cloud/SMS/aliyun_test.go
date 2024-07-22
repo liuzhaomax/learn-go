@@ -18,7 +18,6 @@ func CreateSMSClient(accessKeyId *string, accessKeySecret *string) (_result *dys
 	config := &openapi.Config{}
 	config.AccessKeyId = accessKeyId
 	config.AccessKeySecret = accessKeySecret
-	_result = &dysmsapi.Client{}
 	_result, _err = dysmsapi.NewClient(config)
 	return _result, _err
 }
