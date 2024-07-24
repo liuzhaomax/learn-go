@@ -24,11 +24,20 @@ func uploadFile(c *gin.Context) {
 	// 获取ak
 	akId := env.GetEnv(tea.String("AWS_ACCESS_KEY_ID"))
 	akSecret := env.GetEnv(tea.String("AWS_ACCESS_KEY_SECRET"))
-	// 限制上传文件大小为 10MB
-	form, _ := c.MultipartForm()
+	// 限制上传文件大小为 50MB
+	form, err := c.MultipartForm()
+	if err != nil {
+		return
+	}
 	files := form.File["file"]
+	maxFileSize := 50 << 20
 
 	for _, fileHeader := range files {
+		// 检查文件大小
+		if fileHeader.Size > int64(maxFileSize) {
+			c.String(http.StatusBadRequest, "File %s is too large: %d bytes", fileHeader.Filename, fileHeader.Size)
+			return
+		}
 		// 获取文件后缀
 		ext := fileHeader.Filename
 		// 生成对象键，包含路径
