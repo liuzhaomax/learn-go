@@ -32,7 +32,7 @@ func uploadFile(c *gin.Context) {
 		// 获取文件后缀
 		ext := fileHeader.Filename
 		// 生成对象键，包含路径
-		objectKey := fmt.Sprintf("uploads/%d/%02d/%s/%s", time.Now().Year(), time.Now().Month(), "userId", ext)
+		objectKey := fmt.Sprintf("uploads_test/%d/%02d/%s/%s", time.Now().Year(), time.Now().Month(), "userId", ext)
 
 		// 打开文件
 		file, err := fileHeader.Open()
