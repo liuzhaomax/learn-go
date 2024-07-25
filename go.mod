@@ -17,6 +17,7 @@ require (
 	github.com/aws/aws-sdk-go v1.27.0
 	github.com/dimiro1/banner v1.1.0
 	github.com/gin-gonic/gin v1.7.7
+	github.com/go-resty/resty/v2 v2.13.1
 	github.com/golang/protobuf v1.5.3
 	github.com/google/wire v0.5.0
 	github.com/graphql-go/graphql v0.8.0
@@ -37,7 +38,7 @@ require (
 	go.etcd.io/etcd/api/v3 v3.5.11
 	go.etcd.io/etcd/client/v3 v3.5.11
 	go.uber.org/zap v1.26.0
-	golang.org/x/net v0.22.0
+	golang.org/x/net v0.25.0
 	google.golang.org/grpc v1.60.1
 	google.golang.org/protobuf v1.32.0
 	gorm.io/driver/mysql v1.5.2
@@ -117,10 +118,10 @@ require (
 	go.etcd.io/etcd/client/pkg/v3 v3.5.11 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/crypto v0.21.0 // indirect
+	golang.org/x/crypto v0.23.0 // indirect
 	golang.org/x/exp v0.0.0-20240119083558-1b970713d09a // indirect
-	golang.org/x/sys v0.18.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
+	golang.org/x/sys v0.20.0 // indirect
+	golang.org/x/text v0.15.0 // indirect
 	google.golang.org/genproto v0.0.0-20240116215550-a9fa1716bcac // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20240116215550-a9fa1716bcac // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240116215550-a9fa1716bcac // indirect
