@@ -17,13 +17,13 @@ require (
 	github.com/aws/aws-sdk-go v1.27.0
 	github.com/dimiro1/banner v1.1.0
 	github.com/gin-gonic/gin v1.7.7
-	github.com/go-resty/resty/v2 v2.13.1
 	github.com/golang/protobuf v1.5.3
 	github.com/google/wire v0.5.0
 	github.com/graphql-go/graphql v0.8.0
 	github.com/graphql-go/handler v0.2.3
 	github.com/hashicorp/consul/api v1.27.0
 	github.com/kjk/betterguid v0.0.0-20170621091430-c442874ba63a
+	github.com/ledongthuc/pdf v0.0.0-20240201131950-da5b75280b06
 	github.com/lithammer/shortuuid v3.0.0+incompatible
 	github.com/magiconair/properties v1.8.6
 	github.com/mattn/go-colorable v0.1.13
@@ -106,6 +106,7 @@ require (
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/stretchr/testify v1.9.0 // indirect
 	github.com/subosito/gotenv v1.4.0 // indirect
 	github.com/tidwall/gjson v1.17.1 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
@@ -121,7 +122,7 @@ require (
 	golang.org/x/crypto v0.23.0 // indirect
 	golang.org/x/exp v0.0.0-20240119083558-1b970713d09a // indirect
 	golang.org/x/sys v0.20.0 // indirect
-	golang.org/x/text v0.15.0 // indirect
+	golang.org/x/text v0.16.0 // indirect
 	google.golang.org/genproto v0.0.0-20240116215550-a9fa1716bcac // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20240116215550-a9fa1716bcac // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240116215550-a9fa1716bcac // indirect
