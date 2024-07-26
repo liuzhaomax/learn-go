@@ -78,7 +78,7 @@ func ExtractTextFromPdfFromResponse(resp *http.Response) (string, error) {
 }
 
 func TestPdfToTxt(t *testing.T) {
-	pdfPath := "./test_pdf.pdf"
+	pdfPath := "./test.pdf"
 	text, err := ExtractTextFromPdfFromOS(pdfPath)
 	if err != nil {
 		log.Fatalf("Error extracting text from PDF: %v", err)
