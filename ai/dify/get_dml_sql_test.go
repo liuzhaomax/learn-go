@@ -62,7 +62,7 @@ func sendDifyRequest(c *gin.Context) {
 		})
 		return
 	}
-	req.Header.Set("Authorization", "Bearer app-u4CgixRil0XiYTkkfSr0lD7D")
+	req.Header.Set("Authorization", "Bearer ")
 	req.Header.Set("Content-Type", "application/json")
 
 	// 发送HTTP请求
