@@ -97,7 +97,7 @@ func sendTextToDify(c *gin.Context, urlStr string) {
 	fmt.Printf("Bytes: %d\n", len(text))
 	fmt.Println(text)
 
-	// TODO 发给dify
+	// 发给dify
 	apiKey := "app-TvvOVkZbhnGgPQPRq6hTEtvm" // 请替换为你的实际api_key
 	requestBody := DifyRequest{
 		Inputs: map[string]string{
