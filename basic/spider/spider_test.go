@@ -35,6 +35,19 @@ func extractText(n *html.Node) string {
 	return sb.String()
 }
 
+// cleanText 清除多余的空行
+func cleanText(text string) string {
+	lines := strings.Split(text, "\n")
+	var cleanedLines []string
+	for _, line := range lines {
+		trimmed := strings.TrimSpace(line)
+		if trimmed != "" {
+			cleanedLines = append(cleanedLines, trimmed)
+		}
+	}
+	return strings.Join(cleanedLines, "\n")
+}
+
 func TestSpider(t *testing.T) {
 	url := "https://q2chemistry.net/resumeChinese.html"
 	// url := "https://fan.princeton.edu/sites/g/files/toruqf5476/files/documents/ChineseBiography1.pdf"
@@ -44,7 +57,9 @@ func TestSpider(t *testing.T) {
 		return
 	}
 
-	text := extractText(doc)
-	fmt.Println("网页文本内容:")
-	fmt.Println(text)
+	rawText := extractText(doc)
+
+	finalText := cleanText(rawText)
+
+	fmt.Println(finalText)
 }
