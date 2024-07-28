@@ -36,7 +36,8 @@ func extractText(n *html.Node) string {
 }
 
 func TestSpider(t *testing.T) {
-	url := "https://fan.princeton.edu/sites/g/files/toruqf5476/files/documents/ChineseBiography1.pdf"
+	url := "https://q2chemistry.net/resumeChinese.html"
+	// url := "https://fan.princeton.edu/sites/g/files/toruqf5476/files/documents/ChineseBiography1.pdf"
 	doc, err := fetchHTML(url)
 	if err != nil {
 		fmt.Printf("获取网页失败: %v\n", err)
