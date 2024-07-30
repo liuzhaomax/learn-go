@@ -9,6 +9,7 @@ import (
 )
 
 func TestPyExtractText(t *testing.T) {
+	// pdfPath := "D:\\workspace\\max\\learn-go\\packages\\pdf\\pdf17.pdf" // 绝对路径也可
 	pdfPath := "pdf17.pdf"
 	scriptPath := "extract_text.py"
 
