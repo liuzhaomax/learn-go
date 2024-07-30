@@ -1,11 +1,12 @@
-# extract_text.py
-
 import sys
 import fitz  # PyMuPDF库
+import io
+
+# 强制设置标准输出为UTF-8编码
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, 'utf-8')
 
 def extract_text_from_pdf(pdf_path):
     try:
-        print(f"尝试打开PDF文件: {pdf_path}", sys.stderr)
         pdf = fitz.open(pdf_path)
         all_text = []
 
@@ -21,8 +22,9 @@ def extract_text_from_pdf(pdf_path):
         print(f"解析PDF文件时出错: {e}", sys.stderr)
         raise
 
-
-# if __name__ == "__main__":
-#     pdf_path = "packages/pdf/pdf17.pdf"
-#     full_text = extract_text_from_pdf(pdf_path)
-#     print(full_text)
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python extract_text.py <pdf_path>", sys.stderr)
+        # sys.exit(1)
+    pdf_path = sys.argv[1]
+    extract_text_from_pdf(pdf_path)
