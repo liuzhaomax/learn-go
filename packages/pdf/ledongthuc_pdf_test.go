@@ -78,7 +78,7 @@ func ExtractTextFromPdfFromResponse(resp *http.Response) (string, error) {
 }
 
 func TestPdfToTxt(t *testing.T) {
-	pdfPath := "pdf17.pdf"
+	pdfPath := "test.pdf" // 只适用于pdf1.4 如果是pdf1.7，则需要python
 	text, err := ExtractTextFromPdfFromOS(pdfPath)
 	if err != nil {
 		log.Fatalf("Error extracting text from PDF: %v", err)
