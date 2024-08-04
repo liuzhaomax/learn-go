@@ -1,4 +1,4 @@
-package string
+package main
 
 import (
 	"strings"
@@ -21,7 +21,7 @@ func ModifyString(str string) string {
 	return string(resArr)
 }
 
-//func main() {
+// func main() {
 //	a := ModifyString("oll123eH ")
 //	fmt.Println(reflect.TypeOf(a[0]))
-//}
+// }
