@@ -24,6 +24,7 @@ func main() {
 		// Convert Builder to string, trim extra spaces, and print
 		finalResult := strings.TrimSpace(result.String())
 		fmt.Println(finalResult)
+		// 有问题，还是带着一个span
 	} else {
 		fmt.Println("No matches found")
 	}
