@@ -45,5 +45,5 @@ const InitUserInfo = `
 `
 
 func TestStringFanQuote(t *testing.T) {
-	fmt.Println(InitUserInfo)
+	fmt.Print(InitUserInfo)
 }
