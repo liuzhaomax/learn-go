@@ -1,25 +1,28 @@
 package animal
 
 import (
+	"context"
 	"fmt"
 	"time"
 )
 
-func AnimalGo() {
+func AnimalGo(ctx context.Context, times int) {
 	chCat := make(chan bool, 1)
 	chDog := make(chan bool, 1)
 	chFish := make(chan bool, 1)
 
-	chCat <- true
+	chCat <- true // 启动信号
 
-	for {
+	for i := 0; i < times; i++ {
 		select {
+		case <-ctx.Done():
+			return
 		case <-chCat:
-			go Animal(chDog, "cat")
+			Animal(chDog, "cat")
 		case <-chDog:
-			go Animal(chFish, "dog")
+			Animal(chFish, "dog")
 		case <-chFish:
-			go Animal(chCat, "fish")
+			Animal(chCat, "fish")
 		}
 	}
 }
