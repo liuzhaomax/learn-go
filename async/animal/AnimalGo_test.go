@@ -1,7 +1,11 @@
 package animal
 
-import "testing"
+import (
+	"context"
+	"testing"
+)
 
 func TestAnimalGo(t *testing.T) {
-	AnimalGo()
+	ctx, _ := context.WithCancel(context.Background())
+	AnimalGo(ctx, 10)
 }
