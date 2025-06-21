@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 )
 
+// pip install fonttools
 // pyftsubset input.ttf --text="ABC" --output-file=output.ttf
 
 func main() {
