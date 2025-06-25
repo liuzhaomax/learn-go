@@ -23,6 +23,7 @@ RSA加解密
 
 图片压缩
 > https://tinypng.com/
+> https://ezgif.com/
 
 Github徽记
 > https://shields.io/
