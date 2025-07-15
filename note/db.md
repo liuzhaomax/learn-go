@@ -1,23 +1,23 @@
 # 数据库
 
 <!-- TOC -->
-* [数据库](#)
-  * [一条SQL查询语句执行顺序](#sql)
-  * [一条SQL更新语句执行顺序](#sql)
-  * [事务的隔离级别，怎么选](#)
-  * [索引](#)
-  * [索引的分类](#)
-  * [索引的操作](#)
-  * [锁](#)
-  * [Join优化](#join)
-  * [怎样避免写出慢SQL](#sql)
-  * [集群](#)
-    * [备库延迟很长怎么排查](#)
-  * [异构数据同步](#)
-  * [如何将“删库跑路”的损失降到最低](#)
-  * [数据越来越多，数据库越来越慢该怎么办](#)
-  * [禁用外键](#)
-  * [为什么MongoDB用B树，MySQL用B+树](#mongodbbmysqlb)
+* [数据库](#数据库)
+  * [一条SQL查询语句执行顺序](#一条sql查询语句执行顺序)
+  * [一条SQL更新语句执行顺序](#一条sql更新语句执行顺序)
+  * [事务的隔离级别，怎么选](#事务的隔离级别怎么选)
+  * [索引](#索引)
+  * [索引的分类](#索引的分类)
+  * [索引的操作](#索引的操作)
+  * [锁](#锁)
+  * [Join优化](#join优化)
+  * [怎样避免写出慢SQL](#怎样避免写出慢sql)
+  * [集群](#集群)
+    * [备库延迟很长怎么排查](#备库延迟很长怎么排查)
+  * [异构数据同步](#异构数据同步)
+  * [如何将“删库跑路”的损失降到最低](#如何将删库跑路的损失降到最低)
+  * [数据越来越多，数据库越来越慢该怎么办](#数据越来越多数据库越来越慢该怎么办)
+  * [禁用外键](#禁用外键)
+  * [为什么MongoDB用B树，MySQL用B+树](#为什么mongodb用b树mysql用b树)
 <!-- TOC -->
 
 ---
@@ -121,14 +121,14 @@ show index from user;
 主键索引，可在创建表时，标记`primary key`在字段后面。主键必须唯一，可以是联合索引做主键。
 ```sql
 alter table user drop primary key;
-alter table user 
+alter table user;
 add primary key (user_email);
 ```
 唯一索引，同主键索引，关键字为 `unique`
 ```sql
 create unique index uq_index_user_email on user(user_email);
 drop index uq_index_user_email;
-alter table user
+alter table user;
 add unique key (user_email);
 ```
 普通索引
@@ -138,7 +138,7 @@ drop index index_user_email;
 ```
 全文索引
 ```sql
-create fulltext index on user
+create fulltext index on user;
 key index f_index_user;
 drop fulltext index on user;
 ```
