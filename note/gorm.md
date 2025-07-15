@@ -4,10 +4,10 @@
 
 ### 1. 外键
   + 在一对多关系中，foreignKey指定的键永远指向多方
-  + 在一对多关系中，foreignKey的指定要放在多方
+  + 在一对多关系中，foreignKey的指定放在一方
     + Players []User \`gorm:"foreignKey:ID"\`
     + 上述ID是User的ID
-  + 在一对多关系中，如果foreignKey的指定放在一方
+  + 在一对多关系中，如果foreignKey的指定放在多方
     + RoleID uint \`gorm:"not null"\`
     + Role   Role \`gorm:"foreignKey:RoleID"\` // 与Role的多对一关系
     + 上述foreignKey的RoleID是本表RoleID
